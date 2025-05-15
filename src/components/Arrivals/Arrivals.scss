@@ -1,0 +1,62 @@
+@import "../../assets/variables";
+
+.arrivals {
+	width: 1200px;
+	margin: 50px 0;
+	&__header {
+		margin: 50px 0;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		&-title {
+			font-size: 4.6em;
+			color: $gray;
+			margin-bottom: 25px;
+		}
+		&-text {
+			font-size: 1.6em;
+		}
+	}
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 20px;
+		.product {
+			height: 440px;
+			width: 380px;
+			border-radius: 10px;
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			&__photo {
+				margin: 20px;
+				height: 240px;
+				overflow: hidden;
+				border-radius: 10px;
+				&-img {
+					width: 100%;
+				}
+			}
+
+			&__content {
+				height: 200px;
+				&-brandname {
+					font-size: 2em;
+				}
+				&-title {
+					font-size: 1.2em;
+					color: $grayHeavy;
+				}
+				&-price {
+					font-size: 2.4em;
+				}
+			}
+		}
+	}
+}

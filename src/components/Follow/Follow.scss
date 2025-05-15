@@ -1,0 +1,30 @@
+@import "../../assets/variables";
+
+.follow {
+	padding: 50px 0px;
+	background-color: $whiteHard;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	&__content {
+		width: 1200px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		&-title {
+			font-size: 4.6em;
+			margin-top: 25px;
+		}
+		&-text {
+			color: $grayHeavy;
+			font-size: 1.6em;
+			max-width: 600px;
+			margin-top: 25px;
+		}
+	}
+}

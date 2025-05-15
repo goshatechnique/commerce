@@ -1,0 +1,49 @@
+@import "../../assets/variables";
+
+.header {
+	margin: 100px 200px 150px;
+	width: 1200px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	&-logo {
+		border: none;
+		outline: none;
+		background-color: $white;
+		color: $gray;
+		font-size: 5.2em;
+		font-style: italic;
+	}
+
+	&-navigator {
+		&__link {
+			width: 152px;
+			height: 56px;
+			border: none;
+			outline: none;
+			background-color: $white;
+			cursor: pointer;
+			padding: 0px 20px;
+			color: $gray;
+			font-size: 1.6em;
+			line-height: 1.6em;
+			transition: 0.3s;
+
+			&:hover {
+				color: $grayLight;
+			}
+
+			&-black {
+				background-color: $black;
+				border-radius: 10px;
+				color: $white;
+				&:hover {
+					background-color: $gray;
+					color: $white;
+				}
+			}
+		}
+	}
+}

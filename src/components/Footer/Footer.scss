@@ -1,0 +1,55 @@
+@import "../../assets/variables";
+
+.footer {
+	border-top: 1px solid $grayLight;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 50px 0;
+
+	&-feedback {
+		width: 1200px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 25px;
+
+		&__logo {
+			border: none;
+			outline: none;
+			background-color: $white;
+			color: $gray;
+			font-size: 4.6em;
+			font-style: italic;
+		}
+
+		&__navigator {
+			&-link {
+				border: none;
+				outline: none;
+				background-color: $white;
+				cursor: pointer;
+				padding: 0px 10px;
+				color: $gray;
+				font-size: 1.4em;
+				line-height: 1.4em;
+				transition: 0.3s;
+
+				&:hover {
+					color: $grayLight;
+				}
+			}
+		}
+	}
+
+	&-copyrights {
+		color: $gray;
+		font-size: 1.2em;
+		line-height: 1.2em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}

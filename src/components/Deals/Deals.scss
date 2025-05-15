@@ -1,0 +1,50 @@
+@import "../../assets/variables";
+
+.deals {
+	width: 100%;
+	height: 700px;
+	background-color: $whiteHard;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__content {
+		width: 50%;
+		padding: 0px 100px 0px 0px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 20px;
+
+		&-title {
+			font-size: 4.6em;
+		}
+
+		&-info {
+			width: 400px;
+			font-size: 1.6em;
+		}
+		&-timer {
+			width: 400px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+
+	&__gallery {
+		width: 50%;
+		overflow: hidden;
+		display: flex;
+		justify-content: start;
+		gap: 1em;
+
+		&__card {
+			width: 350px;
+			height: 500px;
+			background-color: red;
+		}
+	}
+}
