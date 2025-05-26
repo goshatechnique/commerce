@@ -1,11 +1,6 @@
 @import "./variables";
-
-/* special colors */
-$green: #40d36c;
-$red: #c91a1a;
-$blue: #45519d;
-$white: #ebf4ff;
-$aqua: #2ebaef;
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Volkhov:wght@400;700&display=swap");
 
 html {
 	font-size: 10px;
@@ -19,9 +14,9 @@ body {
 }
 
 .App {
-	// margin: 150px 200px 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	min-height: 100vh;
 }

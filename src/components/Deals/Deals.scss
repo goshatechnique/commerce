@@ -18,12 +18,12 @@
 		gap: 20px;
 
 		&-title {
-			font-size: 4.6em;
+			font-size: 4.6rem;
 		}
 
 		&-info {
 			width: 400px;
-			font-size: 1.6em;
+			font-size: 1.6rem;
 		}
 		&-timer {
 			width: 400px;
@@ -39,12 +39,12 @@
 		overflow: hidden;
 		display: flex;
 		justify-content: start;
-		gap: 1em;
+		gap: 1rem;
 
 		&__card {
 			width: 350px;
 			height: 500px;
-			background-color: red;
+			background-color: $red;
 		}
 	}
 }

@@ -13,7 +13,7 @@
 		outline: none;
 		background-color: $white;
 		color: $gray;
-		font-size: 5.2em;
+		font-size: 5.2rem;
 		font-style: italic;
 	}
 
@@ -27,9 +27,10 @@
 			cursor: pointer;
 			padding: 0px 20px;
 			color: $gray;
-			font-size: 1.6em;
-			line-height: 1.6em;
+			font-size: 1.6rem;
+			line-height: 1.6rem;
 			transition: 0.3s;
+			text-decoration: none;
 
 			&:hover {
 				color: $grayLight;
@@ -44,6 +45,9 @@
 					color: $white;
 				}
 			}
+		}
+		.active {
+			color: $red;
 		}
 	}
 }

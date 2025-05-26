@@ -1,15 +1,11 @@
 import "./Button.scss";
 
-function Button({
-	name = "sample",
-	onClick = () => {
-		console.log("### default button event");
-	},
-}) {
+function Button({ text = "", icon = null, onClick = () => {}, specialStyles = "" }) {
 	return (
-		<button className="button" onClick={onClick}>
-			{name}
-		</button>
+		<div onClick={onClick} className={`button ${specialStyles}`}>
+			{icon ? <img src={icon} alt="#" className="button-icon" /> : null}
+			{text}
+		</div>
 	);
 }
 

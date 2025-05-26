@@ -10,7 +10,7 @@ function Deals() {
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem.
 					Scelerisque duis ultrices sollicitudin
 				</span>
-				<Button name={"Buy now!"} />
+				<Button text={"Buy now!"} specialStyles="black" />
 				<div className="deals__content-timer">
 					<span>Hurry Up, Before It's To Late</span>
 					<h1>02:16:23:30</h1>

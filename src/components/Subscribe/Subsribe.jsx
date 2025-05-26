@@ -16,7 +16,7 @@ function Subscribe() {
 					Scelerisque duis ultrices sollicitudin
 				</span>
 				<input type="text" placeholder="michael@ymail.com" className="subscribe__content-input" />
-				<Button name="Subscribe Now" />
+				<Button text="Subscribe Now" specialStyles="black" />
 			</div>
 			<div className="subscribe__image">
 				<img src={subscribeSecond} alt="#" className="subscribe__image-img" />

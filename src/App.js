@@ -1,29 +1,69 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./assets/App.scss";
 import Footer from "./components/Footer/Footer.jsx";
 import Header from "./components/Header/Header.jsx";
 import Home from "./pages/Home/Home.jsx";
+import Reviews from "./components/Reviews/Reviews.jsx";
+import Features from "./components/Features/Features.jsx";
+import Follow from "./components/Follow/Follow.jsx";
+import Subscribe from "./components/Subscribe/Subsribe.jsx";
+import Shop from "./pages/Shop/Shop.jsx";
+import Product from "./pages/Product/Product.jsx";
+import { useEffect } from "react";
+import { setAuthChecked, subscribeToAuthChanges } from "./app/authSlice.js";
+import Auth from "./pages/Auth/Auth.jsx";
+import Loader from "./components/Loader/Loader.jsx";
 
-function Product() {
-	return <p>Product</p>;
+function LayoutWithHeader() {
+	return (
+		<>
+			<Header />
+			<Outlet /> {/* Здесь будут вложенные роуты */}
+			<Reviews />
+			<Features />
+			<Follow />
+			<Subscribe />
+			<Footer />
+		</>
+	);
 }
 
-function Shop() {
-	return <p>Shop</p>;
+function LayoutWithoutHeader() {
+	return <Outlet />;
 }
 
 function App() {
+	const dispatch = useDispatch();
+	const { isAuthChecked } = useSelector((state) => state.auth);
+
+	useEffect(() => {
+		dispatch(subscribeToAuthChanges()).then(() => {
+			dispatch(setAuthChecked(true));
+		});
+	}, [dispatch]);
+
 	return (
 		<BrowserRouter>
 			<div className="App">
-				<Header />
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/shop" element={<Shop />} />
-					<Route path="/product" element={<Product />} />
-				</Routes>
-				<Footer />
+				{!isAuthChecked ? (
+					<Loader />
+				) : (
+					<Routes>
+						{/* Роуты с Header */}
+						<Route element={<LayoutWithHeader />}>
+							<Route path="/" element={<Home />} />
+							<Route path="/shop" element={<Shop />} />
+							<Route path="/product/:id" element={<Product />} />
+						</Route>
+
+						{/* Роуты без Header */}
+						<Route element={<LayoutWithoutHeader />}>
+							<Route path="/auth" element={<Auth />} />
+						</Route>
+					</Routes>
+				)}
 			</div>
 		</BrowserRouter>
 	);

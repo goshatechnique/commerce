@@ -15,7 +15,7 @@ function Sales() {
 					<p className="sales__content__center-h2">ultimate</p>
 					<p className="sales__content__center-h1">sale</p>
 					<p className="sales__content__center-h3">new collection</p>
-					<Button name="Shop now" styles={"text-transform: uppercase;"} />
+					<Button text="SHOP NOW" specialStyles="black" />
 				</div>
 				<div className="sales__content__wrapper">
 					<img src={blank2} alt="#" className="sales__content__wrapper-img" />
