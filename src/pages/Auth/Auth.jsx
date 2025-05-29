@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+
+import Button from "../../components/Button/Button";
+import { registerWithEmailAndPassword, loginWithEmailAndPassword, loginWithGoogle } from "../../app/authSlice";
+import { AUTH_TYPES, FIELDS_TYPES } from "../../utils/helpers";
+import InputField from "./InputField/InputField";
 import "./Auth.scss";
 
 import authImage from "../../assets/images/signin.png";
 import emailIcon from "../../assets/images/icon_email.svg";
 import googleIcon from "../../assets/images/icon_google.svg";
-import Button from "../../components/Button/Button";
-import { useDispatch } from "react-redux";
-import { registerWithEmailAndPassword, loginWithEmailAndPassword, loginWithGoogle, logout } from "../../app/authSlice";
-import { AUTH_TYPES, FIELDS_TYPES } from "../../utils/helpers";
-import InputField from "./InputField/InputField";
 
 function Auth() {
+	const location = useLocation();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const { type } = location.state || {};
+
+	useEffect(() => {
+		setAuthType(type || AUTH_TYPES.SIGN_IN);
+	}, [type]);
 
 	const [authType, setAuthType] = useState(AUTH_TYPES.SIGN_IN);
 	const [userData, setUserData] = useState({
@@ -23,20 +32,20 @@ function Auth() {
 		[FIELDS_TYPES.confirmPassword]: "",
 	});
 
-	async function handleEmailRegistration() {
-		dispatch(registerWithEmailAndPassword({ email: userData.Email, password: userData.Password }));
+	function handleEmailRegistration() {
+		dispatch(registerWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then(() =>
+			navigate(`/`)
+		);
 	}
 
 	function handleEmailLogin() {
-		dispatch(loginWithEmailAndPassword({ email: userData.Email, password: userData.Password }));
+		dispatch(loginWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then(() =>
+			navigate(`/`)
+		);
 	}
 
-	async function handleGoogleLogin() {
-		dispatch(loginWithGoogle({ email: userData.Email, password: userData.Password }));
-	}
-
-	function handleLogout() {
-		dispatch(logout());
+	function handleGoogleLogin() {
+		dispatch(loginWithGoogle({ email: userData.Email, password: userData.Password })).then(() => navigate(`/`));
 	}
 
 	function handleUserData(event, fieldName) {
@@ -153,7 +162,6 @@ function Auth() {
 							onClick={toggleAuthType}
 							specialStyles="bold wide margin"
 						/>
-						<Button text="Logout" onClick={handleLogout} specialStyles="bold wide black margin" />
 					</div>
 				</div>
 			</div>

@@ -1,31 +1,29 @@
-@import "../../assets/variables";
+@import "../../assets/styles/variables";
 
 .header {
 	margin: 100px 200px 150px;
 	width: 1200px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr 2fr 250px;
+	grid-template-rows: 56px;
 
-	&-logo {
-		border: none;
-		outline: none;
-		background-color: $white;
-		color: $gray;
-		font-size: 5.2rem;
-		font-style: italic;
-	}
+	&__section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-	&-navigator {
 		&__link {
-			width: 152px;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			height: 56px;
+			width: 98px;
+			margin: 0px 10px;
 			border: none;
 			outline: none;
 			background-color: $white;
 			cursor: pointer;
-			padding: 0px 20px;
 			color: $gray;
 			font-size: 1.6rem;
 			line-height: 1.6rem;
@@ -35,19 +33,46 @@
 			&:hover {
 				color: $grayLight;
 			}
+		}
 
-			&-black {
-				background-color: $black;
-				border-radius: 10px;
-				color: $white;
-				&:hover {
-					background-color: $gray;
-					color: $white;
-				}
+		.icon {
+			width: auto;
+			height: 26px;
+			transition: 0.3s;
+			&:hover {
+				opacity: 0.5;
 			}
 		}
-		.active {
-			color: $red;
+
+		.black {
+			background-color: $black;
+			width: 152px;
+			border-radius: 10px;
+			color: $white;
+			margin: 0px;
+			&:hover {
+				background-color: $gray;
+				color: $white;
+			}
 		}
+	}
+
+	.logo {
+		border: none;
+		outline: none;
+		background-color: $white;
+		color: $gray;
+		font-size: 56px;
+		line-height: 56px;
+		font-style: italic;
+		justify-content: flex-start;
+	}
+
+	.active {
+		border-bottom: 1px solid $gray;
+	}
+
+	.flex-ended {
+		justify-content: flex-end;
 	}
 }

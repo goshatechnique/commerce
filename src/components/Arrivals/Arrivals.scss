@@ -1,4 +1,4 @@
-@import "../../assets/variables";
+@import "../../assets/styles/variables";
 
 .arrivals {
 	width: 1200px;
@@ -40,7 +40,7 @@
 				overflow: hidden;
 				border-radius: 10px;
 				&-img {
-					width: 100%;
+					height: 100%;
 				}
 			}
 

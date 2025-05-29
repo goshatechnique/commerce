@@ -1,6 +1,7 @@
-@import "../../assets/variables";
+@import "../../assets/styles/variables";
 
 .button {
+	box-sizing: border-box;
 	width: 300px;
 	height: 55px;
 	display: flex;
@@ -43,4 +44,8 @@
 
 .margin {
 	margin-top: 10px;
+}
+
+.fullfill {
+	width: 100%;
 }

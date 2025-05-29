@@ -1,4 +1,4 @@
-@import "../../assets/variables";
+@import "../../assets/styles/variables";
 
 .shop {
 	width: 1200px;
@@ -7,8 +7,52 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	.filters {
+	height: 100%;
+
+	.filters-section {
 		width: 20%;
+		align-self: start;
+		color: $black;
+		font-size: 3rem;
+		font-family: "Volkhov";
+
+		.selector {
+			position: relative;
+			margin: 20px 0px;
+
+			&__hide {
+				position: absolute;
+				cursor: pointer;
+				user-select: none;
+				top: 0px;
+				right: 0px;
+				font-size: 2rem;
+			}
+			&__name {
+				font-size: 1.8rem;
+			}
+
+			&__tags {
+				font-size: 1.6rem;
+				font-family: "Jost";
+				color: $grayHeavy;
+				display: flex;
+				flex-wrap: wrap;
+
+				.tag {
+					margin: 5px 10px 0px 0px;
+				}
+			}
+
+			.columnned {
+				flex-wrap: nowrap;
+				flex-direction: column;
+			}
+
+			.hidden {
+				display: none;
+			}
+		}
 	}
 
 	.goods {
@@ -61,6 +105,7 @@
 		justify-content: center;
 		align-items: center;
 		overflow: hidden;
+		background: linear-gradient(to bottom right, $grayLight, $whiteHard);
 		&-img {
 			max-width: 100%;
 			max-height: 100%;
@@ -84,6 +129,12 @@
 		&-price {
 			font-family: "Jost";
 			font-weight: bold;
+			&-depricated {
+				padding-left: 10px;
+				font-weight: normal;
+				text-decoration: line-through;
+				color: $grayMedium;
+			}
 		}
 	}
 }

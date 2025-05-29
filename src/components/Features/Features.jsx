@@ -21,7 +21,7 @@ const features = [
 		id: "shipping",
 		icon: iconShipping,
 		title: "Free Shipping",
-		text: "Order over 150$",
+		text: "Order over 75$",
 	},
 	{
 		id: "support",

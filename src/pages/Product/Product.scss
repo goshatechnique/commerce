@@ -1,18 +1,50 @@
-@import "../../assets/variables";
+@import "../../assets/styles/variables";
 
 .product2 {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	flex-direction: row;
 	padding: 50px 0;
+	width: 1200px;
+	min-height: 900px;
 
-	&__image {
+	&-gallery {
 		width: 50%;
 		height: 500px;
+		overflow: hidden;
+		align-self: flex-start;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&__thumbnails {
+			width: 70px;
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-direction: column;
+			gap: 1rem;
+			overflow: hidden;
+			&-item {
+				cursor: pointer;
+				width: 60px;
+				height: 60px;
+				background-color: $whiteHard;
+				overflow: hidden;
+				&-img {
+					width: 100%;
+				}
+			}
+		}
+
+		&__preview {
+			height: 100%;
+		}
 	}
 
-	&__info {
+	&-details {
 		width: 50%;
 		color: $black;
 		font-family: "Volkhov";
@@ -39,6 +71,11 @@
 		.sales {
 			font-family: "Poppins";
 			color: $grayHeavy;
+			padding-bottom: 20px;
+		}
+
+		.description {
+			font-family: "Poppins";
 			padding-bottom: 20px;
 		}
 
@@ -90,7 +127,10 @@
 			&__content {
 				display: flex;
 				justify-content: space-between;
+				user-select: none;
+				align-items: center;
 				&__selector {
+					cursor: pointer;
 					font-family: "Jost";
 					width: 135px;
 					height: 45px;
@@ -107,16 +147,6 @@
 						line-height: 45px;
 					}
 				}
-				&-btn {
-					border: 1px solid $black;
-					min-width: 440px;
-					height: 45px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					line-height: 4.5rem;
-					border-radius: 5px;
-				}
 			}
 		}
 
@@ -126,7 +156,11 @@
 			padding-bottom: 20px;
 			&__content {
 				display: flex;
+				justify-content: center;
+				align-items: center;
 				&-icon {
+					height: 23px;
+					padding: 0px 10px;
 				}
 
 				&-title {

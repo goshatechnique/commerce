@@ -1,33 +1,80 @@
-import { useSelector } from "react-redux";
-import "./Header.scss";
-import { useNavigate, NavLink } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Link } from "react-router";
 
-// need to add alternate header for authenticated users
+import "./Header.scss";
+import CartIcon from "../../assets/images/cart.png";
+import UserIcon from "../../assets/images/user.png";
+import LogoutIcon from "../../assets/images/logout.png";
+
+import { AUTH_TYPES } from "../../utils/helpers";
+import { logout } from "../../app/authSlice";
+import { openCart } from "../../app/cartSlice";
 
 function Header() {
-	const navigate = useNavigate();
-
 	const user = useSelector((state) => state.auth.user);
+	const dispatch = useDispatch();
+
+	function handleLogout() {
+		dispatch(logout());
+	}
+
+	function handleOpenCart() {
+		dispatch(openCart());
+	}
 
 	return (
 		<div className="header">
-			<div className="header-logo">FASCO</div>
-			<div className="header-navigator">
-				<NavLink className="header-navigator__link" to="/">
+			<div className="header__section logo">FASCO</div>
+			<div className={`header__section ${!user ? "flex-ended" : ""}`}>
+				<NavLink className="header__section__link" to="/">
 					Home
 				</NavLink>
-				<NavLink className="header-navigator__link" to="/shop">
+				<NavLink className="header__section__link" to="/shop">
 					Deals
 				</NavLink>
-				<button className="header-navigator__link">New Arriwals</button>
-				<button className="header-navigator__link">Packages</button>
-				<NavLink className="header-navigator__link" to="/auth">
-					Sign in
+				<NavLink className="header__section__link" to="/arriwals">
+					New Arriwals
 				</NavLink>
-				<button className="header-navigator__link header-navigator__link-black" onClick={() => navigate("/auth")}>
-					Sign up
-				</button>
-				{user ? <span>Hello {user?.email}</span> : null}
+				<NavLink className="header__section__link" to="/packages">
+					Packages
+				</NavLink>
+			</div>
+			<div className={`header__section ${user ? "flex-ended" : ""}`}>
+				{!user ? (
+					<>
+						<NavLink
+							className="header__section__link"
+							to="/auth"
+							state={{
+								type: AUTH_TYPES.SIGN_IN,
+							}}
+						>
+							Sign in
+						</NavLink>
+						<Link
+							className="header__section__link black"
+							to="/auth"
+							state={{
+								type: AUTH_TYPES.SIGN_UP,
+							}}
+						>
+							Sign up
+						</Link>
+					</>
+				) : (
+					<>
+						<img
+							src={UserIcon}
+							alt="#"
+							className="header__section__link icon"
+							onClick={() => {
+								console.log("to profile");
+							}}
+						/>
+						<img src={CartIcon} alt="#" className="header__section__link icon" onClick={handleOpenCart} />
+						<img src={LogoutIcon} alt="#" className="header__section__link icon" onClick={handleLogout} />
+					</>
+				)}
 			</div>
 		</div>
 	);

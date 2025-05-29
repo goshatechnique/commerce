@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
-import "./assets/App.scss";
+import "./assets/styles/App.scss";
 import Footer from "./components/Footer/Footer.jsx";
 import Header from "./components/Header/Header.jsx";
 import Home from "./pages/Home/Home.jsx";
@@ -15,12 +15,14 @@ import { useEffect } from "react";
 import { setAuthChecked, subscribeToAuthChanges } from "./app/authSlice.js";
 import Auth from "./pages/Auth/Auth.jsx";
 import Loader from "./components/Loader/Loader.jsx";
+import Cart from "./components/Cart/Cart.jsx";
+import { hideCart } from "./app/cartSlice.js";
 
 function LayoutWithHeader() {
 	return (
 		<>
 			<Header />
-			<Outlet /> {/* Здесь будут вложенные роуты */}
+			<Outlet />
 			<Reviews />
 			<Features />
 			<Follow />
@@ -37,6 +39,7 @@ function LayoutWithoutHeader() {
 function App() {
 	const dispatch = useDispatch();
 	const { isAuthChecked } = useSelector((state) => state.auth);
+	const { isOpen } = useSelector((state) => state.cart);
 
 	useEffect(() => {
 		dispatch(subscribeToAuthChanges()).then(() => {
@@ -64,6 +67,7 @@ function App() {
 						</Route>
 					</Routes>
 				)}
+				<Cart isOpen={isOpen} onClose={() => dispatch(hideCart())} />
 			</div>
 		</BrowserRouter>
 	);
