@@ -5,46 +5,80 @@
 	height: 700px;
 	background-color: $whiteHard;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
+	user-select: none;
 
-	&__content {
+	&-section {
 		width: 50%;
-		padding: 0px 100px 0px 0px;
+		height: 100%;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-end;
-		gap: 20px;
-
-		&-title {
-			font-size: 4.6rem;
-		}
-
-		&-info {
-			width: 400px;
-			font-size: 1.6rem;
-		}
-		&-timer {
-			width: 400px;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-	}
-
-	&__gallery {
-		width: 50%;
-		overflow: hidden;
-		display: flex;
-		justify-content: start;
 		gap: 1rem;
+		align-items: center;
+
+		&__header {
+			font-size: 4.6rem;
+			color: $gray;
+			font-family: "Volkhow";
+		}
+
+		&__info {
+			font-size: 1.6rem;
+			color: $grayHeavy;
+			font-family: "Poppins";
+		}
+
+		&__notice {
+			font-size: 2.8rem;
+			color: $gray;
+			font-family: "Poppins";
+		}
+
+		&__timer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+
+			.wrapper {
+				.block {
+					width: 76px;
+					height: 76px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 10px;
+					background-color: $white;
+					font-size: 3.2rem;
+					font-family: "DigitalNumbers";
+					box-shadow: -2px 0 10px rgba($black, 0.1);
+				}
+
+				.title {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-family: "Poppins";
+					font-size: 2.4rem;
+					color: $gray;
+				}
+			}
+		}
 
 		&__card {
 			width: 350px;
 			height: 500px;
-			background-color: $red;
+			box-sizing: border-box;
+			border: 1px solid $black;
+		}
+
+		&.columned {
+			margin-right: 100px;
+			width: 400px;
+			flex-direction: column;
+			justify-content: center;
+			display: flex;
+			align-items: start;
 		}
 	}
 }

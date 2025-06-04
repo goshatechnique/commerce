@@ -8,6 +8,9 @@
 	font-family: "Poppins";
 	height: 55px;
 	margin: 0 auto;
+	&.narrow {
+		width: 280px;
+	}
 }
 
 .input-error {
@@ -16,8 +19,4 @@
 	color: $red;
 	line-height: 15px;
 	min-width: 1px;
-}
-
-.narrow {
-	width: 280px;
 }

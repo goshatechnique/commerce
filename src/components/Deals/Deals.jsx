@@ -1,25 +1,68 @@
+import moment from "moment";
 import Button from "../Button/Button";
 import "./Deals.scss";
+import { useEffect, useState } from "react";
 
 function Deals() {
+	const [date, setDate] = useState({
+		days: null,
+		hours: null,
+		mins: null,
+		secs: null,
+	});
+
+	function calculateDate() {
+		const now = moment();
+		const endOfWeek = now.clone().endOf("week");
+		const diff = moment.duration(endOfWeek.diff(now));
+		setDate({
+			days: diff.days(),
+			hours: diff.hours(),
+			mins: diff.minutes(),
+			secs: diff.seconds(),
+		});
+	}
+
+	useEffect(() => {
+		let timeCalculator = setInterval(calculateDate, 1000);
+		return () => {
+			clearInterval(timeCalculator);
+		};
+	}, []);
+
 	return (
 		<div className="deals">
-			<div className="deals__content">
-				<span className="deals__content-title">Deals of the Month!</span>
-				<span className="deals__content-info">
+			<div className="deals-section columned">
+				<div className="deals-section__header">Deals Of The Month</div>
+				<div className="deals-section__info">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem.
-					Scelerisque duis ultrices sollicitudin
-				</span>
-				<Button text={"Buy now!"} specialStyles="black" />
-				<div className="deals__content-timer">
-					<span>Hurry Up, Before It's To Late</span>
-					<h1>02:16:23:30</h1>
+					Scelerisque duis ultrices sollicitudin.
+				</div>
+				<Button text="Buy Now" specialStyles="black tight"></Button>
+				<div className="deals-section__notice">Hurry, Before It's To Late!</div>
+				<div className="deals-section__timer">
+					<div className="wrapper">
+						<div className="block">{date.days}</div>
+						<div className="title">Days</div>
+					</div>
+					<div className="wrapper">
+						<div className="block">{date.hours}</div>
+						<div className="title">Hr</div>
+					</div>
+					<div className="wrapper">
+						<div className="block">{date.mins}</div>
+						<div className="title">Mins</div>
+					</div>
+					<div className="wrapper">
+						<div className="block">{date.secs}</div>
+						<div className="title">Sec</div>
+					</div>
 				</div>
 			</div>
-			<div className="deals__gallery">
-				<div className="deals__gallery__card" />
-				<div className="deals__gallery__card" />
-				<div className="deals__gallery__card" />
+			<div className="deals-section">
+				<div className="deals-section__card">1</div>
+				<div className="deals-section__card">2</div>
+				<div className="deals-section__card">3</div>
 			</div>
 		</div>
 	);

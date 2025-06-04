@@ -7,7 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import Button from "../../components/Button/Button";
 
 import QuantitySelector from "../../components/QuantitySelector/QuantitySelector";
-import { transformPrice } from "../../utils/helpers";
+import { formatPrice } from "../../utils/helpers";
 import { addItem } from "../../app/cartSlice";
 import iconShare from "../../assets/images/icon_share.svg";
 import iconQuestion from "../../assets/images/icon_question.svg";
@@ -70,7 +70,7 @@ function Product() {
 					<div className="product2-details">
 						<div className="logo">FASCO</div>
 						<div className="title">{product?.title}</div>
-						<div className="price">${transformPrice(product?.price)}</div>
+						<div className="price">${formatPrice(product?.price)}</div>
 						<div className="sales">4 people are viewing this right now</div>
 						<div className="description">{product?.description}</div>
 						<div className="left">

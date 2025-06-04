@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import "./Cart.scss";
 
-import { transformPrice } from "../../utils/helpers";
+import { formatPrice } from "../../utils/helpers";
 import { removeItem, updateQuantity } from "../../app/cartSlice";
 
 const Cart = ({ isOpen, onClose }) => {
@@ -32,7 +32,7 @@ const Cart = ({ isOpen, onClose }) => {
 			<div className="shipping">Shipping will be free for the order.</div>
 		) : (
 			<div className="shipping">
-				Buy <b>${transformPrice(75 - total)}</b> more and get <b>free shipping</b>
+				Buy <b>${formatPrice(75 - total)}</b> more and get <b>free shipping</b>
 			</div>
 		);
 	}
@@ -47,7 +47,7 @@ const Cart = ({ isOpen, onClose }) => {
 					<div className="cart-section__product-content__title">
 						{item.brand} - {item.title}
 					</div>
-					<div className="cart-section__product-content__price">${transformPrice(item.price)}</div>
+					<div className="cart-section__product-content__price">${formatPrice(item.price)}</div>
 					<div className="quantity__content">
 						<QuantitySelector
 							quantity={item.quantity}
@@ -84,7 +84,7 @@ const Cart = ({ isOpen, onClose }) => {
 						<div className="divider" />
 						<div className="subtotal">
 							<div>Subtotal</div>
-							<div>${transformPrice(calculateTotal())}</div>
+							<div>${formatPrice(calculateTotal())}</div>
 						</div>
 						<Button text="Checkout" specialStyles="black fullfill" />
 						<Button text="View Cart" specialStyles="fullfill" />

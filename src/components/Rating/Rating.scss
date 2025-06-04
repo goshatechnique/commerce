@@ -1,0 +1,17 @@
+@import "../../assets/styles/variables";
+
+.rating-container {
+	grid-area: rating;
+	font-size: 2.1rem;
+	overflow: hidden;
+	.background {
+		position: absolute;
+		color: $grayLight;
+	}
+
+	.rating {
+		position: absolute;
+		color: $gold;
+		overflow: hidden;
+	}
+}

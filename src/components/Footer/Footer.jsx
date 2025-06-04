@@ -14,7 +14,7 @@ function Footer() {
 					<button className="footer-feedback__navigator-link">FAQ's</button>
 				</div>
 			</div>
-			<div className="footer-copyrights">Copyright (c) 2025. Heorhi Yedziyeu.</div>
+			<div className="footer-copyrights">Copyright © 2025. Heorhi Yedziyeu.</div>
 		</div>
 	);
 }

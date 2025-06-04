@@ -57,7 +57,7 @@ function App() {
 						{/* Роуты с Header */}
 						<Route element={<LayoutWithHeader />}>
 							<Route path="/" element={<Home />} />
-							<Route path="/shop" element={<Shop />} />
+							<Route path="/shop/:id" element={<Shop />} />
 							<Route path="/product/:id" element={<Product />} />
 						</Route>
 

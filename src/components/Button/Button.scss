@@ -21,31 +21,43 @@
 		margin: 0 5px;
 	}
 
+	&.bold {
+		font-weight: bold;
+		color: $blue;
+	}
+
+	&.gray {
+		background-color: $whiteHard;
+		border: none;
+		&:hover {
+			background-color: $black;
+		}
+	}
+
+	&.black {
+		border: none;
+		background-color: $black;
+		color: $white;
+	}
+
+	&.wide {
+		width: 550px;
+	}
+
+	&.tight {
+		width: 220px;
+	}
+
+	&.margin {
+		margin-top: 10px;
+	}
+
+	&.fullfill {
+		width: 100%;
+	}
+
 	&:hover {
 		background-color: $blue;
 		color: $white;
 	}
-}
-
-.bold {
-	font-weight: bold;
-	color: $blue;
-}
-
-.black {
-	border: none;
-	background-color: $black;
-	color: $white;
-}
-
-.wide {
-	width: 550px;
-}
-
-.margin {
-	margin-top: 10px;
-}
-
-.fullfill {
-	width: 100%;
 }

@@ -9,18 +9,20 @@ import LogoutIcon from "../../assets/images/logout.png";
 import { AUTH_TYPES } from "../../utils/helpers";
 import { logout } from "../../app/authSlice";
 import { openCart } from "../../app/cartSlice";
+import { resetFilters, setCurrentPage } from "../../app/productSlice";
 
 function Header() {
 	const user = useSelector((state) => state.auth.user);
 	const dispatch = useDispatch();
 
-	function handleLogout() {
-		dispatch(logout());
-	}
+	const handleLogout = () => dispatch(logout());
 
-	function handleOpenCart() {
-		dispatch(openCart());
-	}
+	const handleOpenCart = () => dispatch(openCart());
+
+	const toProductsHandler = () => {
+		dispatch(resetFilters());
+		dispatch(setCurrentPage(1));
+	};
 
 	return (
 		<div className="header">
@@ -29,7 +31,7 @@ function Header() {
 				<NavLink className="header__section__link" to="/">
 					Home
 				</NavLink>
-				<NavLink className="header__section__link" to="/shop">
+				<NavLink className="header__section__link" onClick={toProductsHandler} to="/shop/1">
 					Deals
 				</NavLink>
 				<NavLink className="header__section__link" to="/arriwals">

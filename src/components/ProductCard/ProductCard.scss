@@ -1,0 +1,72 @@
+@import "../../assets/styles/variables";
+
+.product-card {
+	height: 440px;
+	width: 380px;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 0.4fr;
+	overflow: hidden;
+	font-size: 1.6rem;
+	color: $black;
+
+	&__image {
+		margin: 20px;
+		overflow: hidden;
+		border-radius: 10px;
+		background: linear-gradient(to bottom right, $grayLight, $whiteHard);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&-img {
+			height: 100%;
+		}
+	}
+
+	&__info {
+		margin: 20px;
+		display: grid;
+		grid-template-columns: 1fr 87.5px;
+		grid-auto-rows: 30px 45px 30px;
+		grid-template-areas:
+			"brand rating"
+			"title title"
+			"price discounted";
+
+		.brand {
+			grid-area: brand;
+			color: $grayHeavy;
+			font-size: 1.2rem;
+			display: flex;
+			align-items: center;
+		}
+
+		.title {
+			grid-area: title;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
+			font-weight: normal;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.price {
+			grid-area: price;
+			display: flex;
+			align-items: center;
+			font-family: "Jost";
+			font-weight: bold;
+		}
+		.discounted {
+			grid-area: discounted;
+			display: flex;
+			align-items: center;
+			font-family: "Jost";
+			font-weight: normal;
+			text-decoration: line-through;
+			color: $grayMedium;
+		}
+	}
+}

@@ -15,56 +15,33 @@
 		color: $black;
 		font-size: 3rem;
 		font-family: "Volkhov";
-
-		.selector {
-			position: relative;
-			margin: 20px 0px;
-
-			&__hide {
-				position: absolute;
-				cursor: pointer;
-				user-select: none;
-				top: 0px;
-				right: 0px;
-				font-size: 2rem;
-			}
-			&__name {
-				font-size: 1.8rem;
-			}
-
-			&__tags {
-				font-size: 1.6rem;
-				font-family: "Jost";
-				color: $grayHeavy;
-				display: flex;
-				flex-wrap: wrap;
-
-				.tag {
-					margin: 5px 10px 0px 0px;
-				}
-			}
-
-			.columnned {
-				flex-wrap: nowrap;
-				flex-direction: column;
-			}
-
-			.hidden {
-				display: none;
-			}
-		}
+		user-select: none;
 	}
 
-	.goods {
+	.products-section {
 		width: 80%;
+		min-height: 1010px;
+		&__title {
+			align-self: start;
+			color: $black;
+			font-size: 3rem;
+			font-family: "Volkhov";
+			user-select: none;
+		}
 
-		&-container {
+		&__container {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-around;
+			justify-content: flex-start;
 			align-items: flex-start;
-			row-gap: 1rem;
-			height: 1010px;
+			gap: 3rem;
+			height: 100%;
+
+			&.centered {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 
 		&__pages {
@@ -77,6 +54,7 @@
 			font-family: "Jost";
 			font-weight: bold;
 			margin: 50px 0;
+			height: 44px;
 			&-page {
 				margin: 0px 10px;
 				font-size: 1.6rem;
@@ -95,9 +73,67 @@
 	}
 }
 
+.selector {
+	position: relative;
+	margin: 20px 0px;
+
+	&__hide {
+		position: absolute;
+		cursor: pointer;
+		user-select: none;
+		top: 0px;
+		right: 10px;
+		font-size: 2rem;
+		transition: 0.3s;
+
+		&.hidden {
+			transform: rotate(180deg);
+		}
+
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+	&__name {
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+
+	&__options {
+		font-size: 1.6rem;
+		font-family: "Jost";
+		color: $grayHeavy;
+		display: flex;
+		flex-wrap: wrap;
+
+		.tag {
+			margin: 5px 10px 0px 0px;
+			cursor: pointer;
+			transition: 0.3s;
+			&:hover {
+				text-shadow: $grayHeavy 1px 0 15px;
+			}
+		}
+
+		.active {
+			text-decoration: underline;
+		}
+		&.hidden {
+			display: none;
+		}
+	}
+
+	.columnned {
+		flex-wrap: nowrap;
+		flex-direction: column;
+	}
+}
+
 .product {
 	width: 300px;
 	height: 500px;
+	cursor: pointer;
+
 	&__image {
 		height: 80%;
 		width: 100%;
@@ -111,30 +147,54 @@
 			max-height: 100%;
 		}
 	}
+
 	&__info {
 		font-size: 1.6rem;
+		font-family: "Poppins";
 		color: $black;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: flex-start;
-		height: 20%;
+		display: grid;
 		padding-left: 5px;
-		overflow: hidden;
-		&-name {
-			font-family: "Volkhov";
+		grid-template-columns: 1fr 87.5px;
+		grid-auto-rows: 30px;
+		grid-template-areas:
+			"brand rating"
+			"title title"
+			"price discounted";
+
+		&-title {
+			grid-area: title;
+			display: flex;
+			align-items: center;
+			overflow: hidden;
 			font-weight: normal;
-			height: 60px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
+
+		&-brand {
+			grid-area: brand;
+			color: $grayHeavy;
+			font-size: 1.2rem;
+			display: flex;
+			align-items: center;
+		}
+
+		&-discounted {
+			grid-area: discounted;
+			display: flex;
+			align-items: center;
+			font-family: "Jost";
+			font-weight: normal;
+			text-decoration: line-through;
+			color: $grayMedium;
+		}
+
 		&-price {
+			grid-area: price;
+			display: flex;
+			align-items: center;
 			font-family: "Jost";
 			font-weight: bold;
-			&-depricated {
-				padding-left: 10px;
-				font-weight: normal;
-				text-decoration: line-through;
-				color: $grayMedium;
-			}
 		}
 	}
 }

@@ -1,19 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import ProductCard from "../ProductCard/ProductCard";
+import Button from "../Button/Button";
 import { getNewArrivals } from "../../app/productSlice";
 import "./Arrivals.scss";
-import { transformPrice } from "../../utils/helpers";
-import { useNavigate } from "react-router";
 
 function Arrivals() {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const { newArrivals } = useSelector((state) => state.products);
+	const [arrivalsFilter, setArrivalsFilter] = useState(null);
 
 	useEffect(() => {
-		dispatch(getNewArrivals());
-	}, [dispatch]);
+		dispatch(getNewArrivals(arrivalsFilter));
+	}, [arrivalsFilter, dispatch]);
 
 	return (
 		<div className="arrivals">
@@ -24,24 +24,36 @@ function Arrivals() {
 					Scelerisque duis ultrices sollicitudin
 				</span>
 			</div>
+			<div className="arrivals__navigator">
+				<Button
+					text={`Kitchen Accessoires`}
+					specialStyles={`gray tight ${arrivalsFilter === "kitchen-accessories" ? "black" : null}`}
+					onClick={() => setArrivalsFilter("kitchen-accessories")}
+				/>
+				<Button
+					text={`Men's Watches`}
+					specialStyles={`gray tight ${arrivalsFilter === "mens-watches" ? "black" : null}`}
+					onClick={() => setArrivalsFilter("mens-watches")}
+				/>
+				<Button
+					text="Mobile Accessories"
+					specialStyles={`gray tight ${arrivalsFilter === "mobile-accessories" ? "black" : null}`}
+					onClick={() => setArrivalsFilter("mobile-accessories")}
+				/>
+				<Button
+					text="Women Watches"
+					specialStyles={`gray tight ${arrivalsFilter === "womens-watches" ? "black" : null}`}
+					onClick={() => setArrivalsFilter("womens-watches")}
+				/>
+				<Button
+					text="Women Bags"
+					specialStyles={`gray tight ${arrivalsFilter === "womens-bags" ? "black" : null}`}
+					onClick={() => setArrivalsFilter("womens-bags")}
+				/>
+			</div>
 			<div className="arrivals__content">
 				{newArrivals.map((product) => (
-					<div
-						key={product.id}
-						className="product"
-						onClick={() => {
-							navigate(`/product/${product.id}`);
-						}}
-					>
-						<div className="product__photo">
-							<img src={product?.images[0]} alt="#" className="product__photo-img" />
-						</div>
-						<div className="product__content">
-							<div className="product__content-brandname">{product.title.split(" ")[0]}</div>
-							<div className="product__content-title">{product.title}</div>
-							<div className="product__content-price">${transformPrice(product.price)}</div>
-						</div>
-					</div>
+					<ProductCard key={product.id} product={product} />
 				))}
 			</div>
 		</div>
