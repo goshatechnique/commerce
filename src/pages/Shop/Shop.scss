@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets//styles//variables" as vars;
 
 .shop {
 	width: 1200px;
@@ -12,7 +12,7 @@
 	.filters-section {
 		width: 20%;
 		align-self: start;
-		color: $black;
+		color: vars.$black;
 		font-size: 3rem;
 		font-family: "Volkhov";
 		user-select: none;
@@ -20,13 +20,44 @@
 
 	.products-section {
 		width: 80%;
-		min-height: 1010px;
+		min-height: 1030px;
 		&__title {
 			align-self: start;
-			color: $black;
+			color: vars.$black;
 			font-size: 3rem;
 			font-family: "Volkhov";
 			user-select: none;
+		}
+
+		&__sorting {
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			user-select: none;
+			position: relative;
+			height: 39px;
+			font-size: 1.3rem;
+			color: vars.$black;
+			font-family: "Poppins";
+			.container {
+				top: 39px;
+				position: absolute;
+				display: flex;
+				flex-direction: column;
+				background-color: vars.$white;
+				overflow: hidden;
+				box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
+				&__option {
+					box-sizing: border-box;
+					border-bottom: 1px solid vars.$grayHeavy;
+					padding: 10px;
+					transition: 0.3s;
+					&:hover {
+						background-color: vars.$blue;
+						color: vars.$white;
+					}
+				}
+			}
 		}
 
 		&__container {
@@ -67,7 +98,7 @@
 				line-height: 44px;
 			}
 			.active {
-				background-color: $grayLight;
+				background-color: vars.$grayLight;
 			}
 		}
 	}
@@ -102,7 +133,7 @@
 	&__options {
 		font-size: 1.6rem;
 		font-family: "Jost";
-		color: $grayHeavy;
+		color: vars.$grayHeavy;
 		display: flex;
 		flex-wrap: wrap;
 
@@ -111,7 +142,7 @@
 			cursor: pointer;
 			transition: 0.3s;
 			&:hover {
-				text-shadow: $grayHeavy 1px 0 15px;
+				text-shadow: vars.$grayHeavy 1px 0 15px;
 			}
 		}
 
@@ -141,7 +172,7 @@
 		justify-content: center;
 		align-items: center;
 		overflow: hidden;
-		background: linear-gradient(to bottom right, $grayLight, $whiteHard);
+		background: linear-gradient(to bottom right, vars.$grayLight, vars.$whiteHard);
 		&-img {
 			max-width: 100%;
 			max-height: 100%;
@@ -151,7 +182,7 @@
 	&__info {
 		font-size: 1.6rem;
 		font-family: "Poppins";
-		color: $black;
+		color: vars.$black;
 		display: grid;
 		padding-left: 5px;
 		grid-template-columns: 1fr 87.5px;
@@ -173,7 +204,7 @@
 
 		&-brand {
 			grid-area: brand;
-			color: $grayHeavy;
+			color: vars.$grayHeavy;
 			font-size: 1.2rem;
 			display: flex;
 			align-items: center;
@@ -186,7 +217,7 @@
 			font-family: "Jost";
 			font-weight: normal;
 			text-decoration: line-through;
-			color: $grayMedium;
+			color: vars.$grayMedium;
 		}
 
 		&-price {

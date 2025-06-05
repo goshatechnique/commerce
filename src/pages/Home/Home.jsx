@@ -24,8 +24,9 @@ function Home() {
 			<Sales />
 
 			<div className="brands-navigator">
-				{BRANDS_LOGO.map((brand) => (
+				{BRANDS_LOGO.map((brand, id) => (
 					<img
+						key={id}
 						className="brands-navigator__link"
 						src={brand.logo}
 						alt={brand.brandname}

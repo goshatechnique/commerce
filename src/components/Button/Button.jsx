@@ -1,11 +1,11 @@
 import "./Button.scss";
 
-function Button({ text = "", icon = null, onClick = () => {}, specialStyles = "" }) {
+function Button({ text = "", disabled = false, icon = null, onClick = () => {}, specialStyles = "" }) {
 	return (
-		<div onClick={onClick} className={`button ${specialStyles}`}>
+		<button onClick={onClick} className={`button ${specialStyles} ${disabled ? "disabled" : ""}`} disabled={disabled}>
 			{icon ? <img src={icon} alt="#" className="button-icon" /> : null}
 			{text}
-		</div>
+		</button>
 	);
 }
 

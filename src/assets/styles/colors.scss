@@ -1,0 +1,7 @@
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$error-color: #e74c3c;
+
+@use "sass:color";
+
+@forward "colors" hide $primary-color, $secondary-color, $error-color;

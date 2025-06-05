@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .rating-container {
 	grid-area: rating;
@@ -6,12 +6,12 @@
 	overflow: hidden;
 	.background {
 		position: absolute;
-		color: $grayLight;
+		color: vars.$grayLight;
 	}
 
 	.rating {
 		position: absolute;
-		color: $gold;
+		color: vars.$gold;
 		overflow: hidden;
 	}
 }

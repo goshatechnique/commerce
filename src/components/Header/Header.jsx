@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Link } from "react-router";
+import { NavLink, Link, useNavigate } from "react-router";
 
 import "./Header.scss";
 import CartIcon from "../../assets/images/cart.png";
@@ -14,8 +14,12 @@ import { resetFilters, setCurrentPage } from "../../app/productSlice";
 function Header() {
 	const user = useSelector((state) => state.auth.user);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const handleLogout = () => dispatch(logout());
+	const handleLogout = () => {
+		dispatch(logout());
+		navigate("/auth");
+	};
 
 	const handleOpenCart = () => dispatch(openCart());
 
@@ -31,14 +35,14 @@ function Header() {
 				<NavLink className="header__section__link" to="/">
 					Home
 				</NavLink>
-				<NavLink className="header__section__link" onClick={toProductsHandler} to="/shop/1">
+				<NavLink className="header__section__link" onClick={toProductsHandler} to="/shop/1" end={false}>
 					Deals
 				</NavLink>
 				<NavLink className="header__section__link" to="/arriwals">
 					New Arriwals
 				</NavLink>
-				<NavLink className="header__section__link" to="/packages">
-					Packages
+				<NavLink className="header__section__link" to="/basket">
+					Basket
 				</NavLink>
 			</div>
 			<div className={`header__section ${user ? "flex-ended" : ""}`}>

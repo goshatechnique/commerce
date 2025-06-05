@@ -17,6 +17,8 @@ import Auth from "./pages/Auth/Auth.jsx";
 import Loader from "./components/Loader/Loader.jsx";
 import Cart from "./components/Cart/Cart.jsx";
 import { hideCart } from "./app/cartSlice.js";
+import Basket from "./pages/Basket/Basket.jsx";
+import Checkout from "./pages/Checkout/Checkout.jsx";
 
 function LayoutWithHeader() {
 	return (
@@ -54,14 +56,14 @@ function App() {
 					<Loader />
 				) : (
 					<Routes>
-						{/* Роуты с Header */}
 						<Route element={<LayoutWithHeader />}>
 							<Route path="/" element={<Home />} />
 							<Route path="/shop/:id" element={<Shop />} />
 							<Route path="/product/:id" element={<Product />} />
+							<Route path="/basket" element={<Basket />} />
+							<Route path="/checkout" element={<Checkout />} />
 						</Route>
 
-						{/* Роуты без Header */}
 						<Route element={<LayoutWithoutHeader />}>
 							<Route path="/auth" element={<Auth />} />
 						</Route>

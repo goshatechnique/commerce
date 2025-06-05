@@ -126,11 +126,29 @@ export const PRICES = [
 	{ min: 200, max: 400 },
 ];
 
+export const SORT_OPTIONS = [
+	{ id: 1, value: { field: "stock", type: "lowest" }, label: "Best selling" },
+	{ id: 2, value: { field: "price", type: "lowest" }, label: "Lowest price" },
+	{ id: 3, value: { field: "price", type: "higher" }, label: "Higher price" },
+	{ id: 4, value: { field: "rating", type: "higher" }, label: "Best rating" },
+	{ id: 5, value: { field: "discountPercentage", type: "higher" }, label: "Higher discount" },
+];
+
 export const PAGE_LENGTH = 6;
 
 export const formatPrice = (number) => Number(number).toFixed(2);
 
 export const getUndiscountedPrice = (price, discountPercentage) => price - (price / 100) * discountPercentage;
+
+export const calculateTotal = (items = []) => {
+	const totalPrice = items.reduce((accumulator, item) => accumulator + item.quantity * item.price, 0);
+	const shipping = items?.length > 0 ? (totalPrice > 75 ? 0 : 10) : 0;
+	return {
+		totalPrice,
+		shipping,
+		subtotal: totalPrice + shipping,
+	};
+};
 
 export const loadCartFromLocalStorage = () => {
 	try {
@@ -183,3 +201,13 @@ export const filterProducts = (products, criteries) => {
 		});
 	});
 };
+
+export function sortProducts(products, from, field) {
+	if (from === "lowest") {
+		return products.sort((firstItem, secondItem) => firstItem[field] - secondItem[field]);
+	} else if (from === "higher") {
+		return products.sort((firstItem, secondItem) => secondItem[field] - firstItem[field]);
+	} else {
+		return products;
+	}
+}

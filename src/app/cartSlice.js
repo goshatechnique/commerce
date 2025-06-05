@@ -19,6 +19,7 @@ const cartSlice = createSlice({
 		addItem(state, action) {
 			const item = action.payload;
 			const existingItem = state.items.find((i) => i.id === item.id);
+			//* some bug with adding item with quantity 9 by two steps with value 8
 			if (existingItem) {
 				existingItem.quantity += item.quantity;
 			} else {

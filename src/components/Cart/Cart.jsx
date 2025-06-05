@@ -5,13 +5,17 @@ import Button from "../Button/Button";
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import "./Cart.scss";
 
-import { formatPrice } from "../../utils/helpers";
+import { calculateTotal, formatPrice } from "../../utils/helpers";
 import { removeItem, updateQuantity } from "../../app/cartSlice";
+import { useNavigate } from "react-router";
 
 const Cart = ({ isOpen, onClose }) => {
 	const portalElement = document.getElementById("cart-portal");
 	const { items } = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const total = calculateTotal(items);
 
 	function updateQuantityHandler(id, quantity, stock) {
 		if (quantity < 0 || quantity > stock) return;
@@ -22,17 +26,22 @@ const Cart = ({ isOpen, onClose }) => {
 		dispatch(updateQuantity({ id, quantity }));
 	}
 
-	const calculateTotal = () => {
-		return items.reduce((accumulator, item) => accumulator + item.quantity * item.price, 0);
+	const toBasketHandler = () => {
+		navigate("/basket");
+		onClose();
+	};
+
+	const toCheckoutHandler = () => {
+		navigate("/checkout");
+		onClose();
 	};
 
 	function ShippingInfo() {
-		const total = calculateTotal();
-		return total > 75 ? (
-			<div className="shipping">Shipping will be free for the order.</div>
+		return total.totalPrice > 75 ? (
+			<div className="shipping">Shipping will be free for this order</div>
 		) : (
 			<div className="shipping">
-				Buy <b>${formatPrice(75 - total)}</b> more and get <b>free shipping</b>
+				Buy <b>${formatPrice(75 - total.totalPrice)}</b> more and get <b>free shipping</b>
 			</div>
 		);
 	}
@@ -84,10 +93,10 @@ const Cart = ({ isOpen, onClose }) => {
 						<div className="divider" />
 						<div className="subtotal">
 							<div>Subtotal</div>
-							<div>${formatPrice(calculateTotal())}</div>
+							<div>${formatPrice(total.subtotal)}</div>
 						</div>
-						<Button text="Checkout" specialStyles="black fullfill" />
-						<Button text="View Cart" specialStyles="fullfill" />
+						<Button text="Checkout" specialStyles="black fullfill" onClick={toCheckoutHandler} />
+						<Button text="View Cart" specialStyles="fullfill" onClick={toBasketHandler} />
 					</div>
 				</div>
 			</div>

@@ -1,9 +1,9 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .loader {
 	width: 48px;
 	height: 48px;
-	border: 5px solid $gray;
+	border: 5px solid vars.$gray;
 	border-bottom-color: transparent;
 	border-radius: 50%;
 	display: inline-block;

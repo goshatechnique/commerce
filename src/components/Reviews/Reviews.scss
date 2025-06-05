@@ -1,7 +1,7 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .reviews {
-	background-color: $whiteHard;
+	background-color: vars.$whiteHard;
 	width: 100%;
 	padding: 50px 0;
 	display: flex;
@@ -15,7 +15,7 @@
 
 	&-info {
 		font-size: 1.6rem;
-		color: $grayHeavy;
+		color: vars.$grayHeavy;
 		padding: 50px 0;
 	}
 
@@ -44,7 +44,7 @@
 			position: absolute;
 			width: 800px;
 			height: 400px;
-			background: $white;
+			background: vars.$white;
 			transition: all 0.5s ease;
 			transform-origin: center;
 			&.center {
@@ -78,9 +78,9 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				color: $black;
-				box-shadow: 1px 1px 20px 5px rgba($black, 0.2);
-				background-color: $white;
+				color: vars.$black;
+				box-shadow: 1px 1px 20px 5px rgba(vars.$black, 0.2);
+				background-color: vars.$white;
 				font-size: 3rem;
 				cursor: pointer;
 				&-img {
@@ -98,7 +98,7 @@
 		width: 800px;
 		height: 400px;
 		display: flex;
-		background-color: $white;
+		background-color: vars.$white;
 
 		&__avatar {
 			width: 40%;
@@ -116,7 +116,7 @@
 					position: absolute;
 					top: 110px;
 					right: 70px;
-					background-color: $grayHeavy;
+					background-color: vars.$grayHeavy;
 					width: 220px;
 					height: 220px;
 					z-index: 0;
@@ -147,7 +147,7 @@
 				margin-top: 30px;
 				width: 230px;
 				height: 1px;
-				background-color: $gray;
+				background-color: vars.$gray;
 			}
 
 			&-fullname {

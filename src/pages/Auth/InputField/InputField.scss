@@ -1,9 +1,9 @@
-@import "../../../assets/styles/variables";
+@use "../../../assets/styles/variables" as vars;
 
 .input {
 	outline: none;
 	border: none;
-	border-bottom: 1px solid $grayHeavy;
+	border-bottom: 1px solid vars.$grayHeavy;
 	font-size: 1.6rem;
 	font-family: "Poppins";
 	height: 55px;
@@ -16,7 +16,7 @@
 .input-error {
 	height: 15px;
 	font-size: 1.3rem;
-	color: $red;
+	color: vars.$red;
 	line-height: 15px;
 	min-width: 1px;
 }
