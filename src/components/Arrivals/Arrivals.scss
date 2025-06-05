@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .arrivals {
 	width: 1200px;
@@ -9,7 +9,7 @@
 		text-align: center;
 		&-title {
 			font-size: 4.6rem;
-			color: $gray;
+			color: vars.$gray;
 			margin-bottom: 25px;
 		}
 		&-text {

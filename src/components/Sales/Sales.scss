@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .sales {
 	width: 1200px;
@@ -29,8 +29,8 @@
 				line-height: 160px;
 				padding: 0;
 				margin: 0;
-				text-shadow: -1px -1px 0 $gray, 1px -1px 0 $gray, -1px 1px 0 $gray, 1px 1px 0 $gray;
-				color: $white;
+				text-shadow: -1px -1px 0 vars.$gray, 1px -1px 0 vars.$gray, -1px 1px 0 vars.$gray, 1px 1px 0 vars.$gray;
+				color: vars.$white;
 			}
 
 			&-h2 {

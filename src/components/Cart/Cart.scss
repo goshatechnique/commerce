@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .overlay {
 	position: fixed;
@@ -17,15 +17,15 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba($black, 0.5);
+	background-color: rgba(vars.$black, 0.5);
 }
 
 .cart-container {
 	position: relative;
 	width: 700px;
 	height: 100%;
-	background: $white;
-	box-shadow: -2px 0 10px rgba($black, 0.1);
+	background: vars.$white;
+	box-shadow: -2px 0 10px rgba(vars.$black, 0.1);
 	overflow-y: auto;
 	z-index: 11;
 	transform: translateX(100%);
@@ -57,7 +57,7 @@
 		.divider {
 			width: 100%;
 			height: 1px;
-			background-color: $grayLight;
+			background-color: vars.$grayLight;
 			margin: 20px 0;
 		}
 
@@ -68,15 +68,15 @@
 			.title {
 				font-family: "Volkhov";
 				font-size: 4.2rem;
-				color: $black;
+				color: vars.$black;
 			}
 
 			.shipping {
 				font-size: 2.6rem;
 				font-family: "Poppins";
-				color: $grayLight;
+				color: vars.$grayLight;
 				b {
-					color: $black;
+					color: vars.$black;
 				}
 			}
 		}
@@ -110,13 +110,13 @@
 					&__title {
 						font-family: "Volkhow";
 						font-size: 2.2rem;
-						color: $black;
+						color: vars.$black;
 					}
 
 					&__price {
 						font-family: "Poppins";
 						font-size: 2.2rem;
-						color: $black;
+						color: vars.$black;
 					}
 				}
 			}
@@ -133,7 +133,7 @@
 				flex-direction: row;
 				width: 100%;
 				font-size: 2.2rem;
-				color: $black;
+				color: vars.$black;
 				font-family: "Volkhov";
 			}
 		}

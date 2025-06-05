@@ -1,8 +1,8 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .follow {
 	padding: 50px 0px;
-	background-color: $whiteHard;
+	background-color: vars.$whiteHard;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -21,7 +21,7 @@
 			margin-top: 25px;
 		}
 		&-text {
-			color: $grayHeavy;
+			color: vars.$grayHeavy;
 			font-size: 1.6rem;
 			max-width: 600px;
 			margin-top: 25px;

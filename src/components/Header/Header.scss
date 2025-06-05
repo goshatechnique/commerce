@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .header {
 	margin: 100px 200px 150px;
@@ -22,16 +22,16 @@
 			margin: 0px 10px;
 			border: none;
 			outline: none;
-			background-color: $white;
+			background-color: vars.$white;
 			cursor: pointer;
-			color: $gray;
+			color: vars.$gray;
 			font-size: 1.6rem;
 			line-height: 1.6rem;
 			transition: 0.3s;
 			text-decoration: none;
 
 			&:hover {
-				color: $grayLight;
+				color: vars.$grayLight;
 			}
 		}
 
@@ -45,14 +45,14 @@
 		}
 
 		.black {
-			background-color: $black;
+			background-color: vars.$black;
 			width: 152px;
 			border-radius: 10px;
-			color: $white;
+			color: vars.$white;
 			margin: 0px;
 			&:hover {
-				background-color: $gray;
-				color: $white;
+				background-color: vars.$gray;
+				color: vars.$white;
 			}
 		}
 	}
@@ -60,8 +60,8 @@
 	.logo {
 		border: none;
 		outline: none;
-		background-color: $white;
-		color: $gray;
+		background-color: vars.$white;
+		color: vars.$gray;
 		font-size: 56px;
 		line-height: 56px;
 		font-style: italic;
@@ -69,7 +69,7 @@
 	}
 
 	.active {
-		border-bottom: 1px solid $gray;
+		border-bottom: 1px solid vars.$gray;
 	}
 
 	.flex-ended {

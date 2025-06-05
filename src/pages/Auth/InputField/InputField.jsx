@@ -2,7 +2,7 @@ import "./InputField.scss";
 
 function InputField({ type = "text", placeholder = "", specialStyles = "", value = "", onChange = () => {} }) {
 	function validateInput() {
-		// need to add check is passwords are equal
+		//* need to add check is passwords are equal
 		const phoneNumberPattern = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
 		const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		let validateMsg;

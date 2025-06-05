@@ -1,10 +1,10 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .auth-page {
 	display: grid;
 	grid-template-columns: 1fr 1.5fr;
 	grid-template-rows: 1fr;
-	border: 1px solid $grayLight;
+	border: 1px solid vars.$grayLight;
 	min-width: 1440px;
 	min-height: 900px;
 	overflow: hidden;
@@ -34,12 +34,12 @@
 
 		&__logo {
 			font-size: 6.6rem;
-			color: $gray;
+			color: vars.$gray;
 		}
 
 		&__title {
 			font-size: 2rem;
-			color: $black;
+			color: vars.$black;
 			margin: 25px 0px;
 		}
 
@@ -53,7 +53,7 @@
 
 		&__divider {
 			font-size: 4rem;
-			color: $grayHeavy;
+			color: vars.$grayHeavy;
 			font-family: "Poppins";
 			font-weight: bold;
 			align-self: center;

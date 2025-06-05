@@ -1,10 +1,10 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { filterProducts, PAGE_LENGTH } from "../utils/helpers";
+import { filterProducts, PAGE_LENGTH, sortProducts } from "../utils/helpers";
 
 const initialState = {
-	allProducts: [],
-	products: [],
+	productsAll: [],
+	productsVisible: [],
 	newArrivals: [],
 	loading: false,
 	error: null,
@@ -15,8 +15,10 @@ const initialState = {
 		category: [],
 		price: { min: 0, max: Infinity },
 	},
-	sortType: null,
-	sortField: null,
+	sorting: {
+		type: null,
+		field: null,
+	},
 };
 
 export const getProducts = createAsyncThunk("products/getProducts", async (_, { rejectWithValue }) => {
@@ -44,16 +46,6 @@ export const getNewArrivals = createAsyncThunk(
 	}
 );
 
-function sortProducts(products, from, field) {
-	if (from === "lowest") {
-		return products.sort((firstItem, secondItem) => firstItem[field] - secondItem[field]);
-	} else if (from === "higher") {
-		return products.sort((firstItem, secondItem) => secondItem[field] - firstItem[field]);
-	} else {
-		return products;
-	}
-}
-
 const productSlice = createSlice({
 	name: "products",
 	initialState,
@@ -62,11 +54,11 @@ const productSlice = createSlice({
 			state.currentPage = action.payload;
 		},
 		getProductsByPage: (state) => {
-			const slicedPart = state.allProducts.slice(
+			const slicedPart = state.productsAll.slice(
 				PAGE_LENGTH * state.currentPage - PAGE_LENGTH,
 				PAGE_LENGTH * state.currentPage
 			);
-			state.products = slicedPart;
+			state.productsVisible = slicedPart;
 		},
 		changeFilters: (state, action) => {
 			let { category, tag } = action.payload;
@@ -83,13 +75,6 @@ const productSlice = createSlice({
 			};
 			state.currentPage = 1;
 		},
-		resetFilters: (state) => {
-			state.filters = {
-				brand: [],
-				category: [],
-				price: { min: 0, max: Infinity },
-			};
-		},
 		changeFilterPrice: (state, action) => {
 			if (state.filters.price.min === action.payload.min && state.filters.price.max === action.payload.max) {
 				state.filters.price = {
@@ -100,9 +85,18 @@ const productSlice = createSlice({
 				state.filters.price = { min: action.payload.min, max: action.payload.max };
 			}
 		},
-		updateSort: (state, action) => {
-			state.sortType = "lowest";
-			state.sortField = "price";
+		changeSorting: (state, action) => {
+			state.sorting = {
+				type: action.payload.type,
+				field: action.payload.field,
+			};
+		},
+		resetFilters: (state) => {
+			state.filters = {
+				brand: [],
+				category: [],
+				price: { min: 0, max: Infinity },
+			};
 		},
 	},
 	extraReducers: (builder) => {
@@ -110,19 +104,18 @@ const productSlice = createSlice({
 			state.loading = true;
 			state.error = null;
 		};
-
 		const handleRejected = (state, action) => {
 			state.loading = false;
 			state.error = action.payload;
 		};
-
 		builder
 			.addCase(getProducts.pending, handlePending)
 			.addCase(getProducts.fulfilled, (state, action) => {
-				const filteredProducts = filterProducts(action.payload, state.filters);
-				state.allProducts = filteredProducts;
-				state.pagesTotal = Math.ceil(filteredProducts.length / 6);
-				state.products = state.allProducts.slice(
+				let requestedProducts = filterProducts(action.payload, state.filters); // filter products
+				requestedProducts = sortProducts(requestedProducts, state.sorting.type, state.sorting.field); // sort products
+				state.productsAll = requestedProducts;
+				state.pagesTotal = Math.ceil(requestedProducts.length / 6);
+				state.productsVisible = state.productsAll.slice(
 					PAGE_LENGTH * state.currentPage - PAGE_LENGTH,
 					PAGE_LENGTH * state.currentPage
 				);
@@ -143,8 +136,8 @@ export const {
 	getProductsByPage,
 	getBrands,
 	changeFilters,
+	changeSorting,
 	changeFilterPrice,
 	resetFilters,
-	updateSort,
 } = productSlice.actions;
 export default productSlice.reducer;

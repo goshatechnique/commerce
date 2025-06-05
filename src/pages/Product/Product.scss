@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .product2 {
 	display: flex;
@@ -31,7 +31,7 @@
 				cursor: pointer;
 				width: 60px;
 				height: 60px;
-				background-color: $whiteHard;
+				background-color: vars.$whiteHard;
 				overflow: hidden;
 				&-img {
 					width: 100%;
@@ -46,14 +46,14 @@
 
 	&-details {
 		width: 50%;
-		color: $black;
+		color: vars.$black;
 		font-family: "Volkhov";
 		font-size: 1.6rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
 		.logo {
-			color: $grayMedium;
+			color: vars.$grayMedium;
 			font-size: 1.4rem;
 			padding-bottom: 20px;
 		}
@@ -70,7 +70,7 @@
 
 		.sales {
 			font-family: "Poppins";
-			color: $grayHeavy;
+			color: vars.$grayHeavy;
 			padding-bottom: 20px;
 		}
 
@@ -81,7 +81,7 @@
 
 		.left {
 			font-family: "Jost";
-			color: $grayMedium;
+			color: vars.$grayMedium;
 			padding-bottom: 20px;
 		}
 
@@ -89,14 +89,12 @@
 			display: flex;
 			flex-direction: column;
 			padding-bottom: 20px;
-			&-title {
-			}
 			&__selector {
 				display: flex;
 				&-btn {
 					width: 45px;
 					height: 45px;
-					border: 1px solid $grayLight;
+					border: 1px solid vars.$grayLight;
 					line-height: 45px;
 					font-size: 1.8rem;
 					display: flex;
@@ -111,8 +109,6 @@
 			display: flex;
 			flex-direction: column;
 			padding-bottom: 20px;
-			&-title {
-			}
 			&__selector {
 				display: flex;
 			}
@@ -122,8 +118,6 @@
 			display: flex;
 			flex-direction: column;
 			padding-bottom: 20px;
-			&-title {
-			}
 			&__content {
 				display: flex;
 				justify-content: space-between;
@@ -134,7 +128,7 @@
 					font-family: "Jost";
 					width: 135px;
 					height: 45px;
-					border: 1px solid $grayLight;
+					border: 1px solid vars.$grayLight;
 					line-height: 45px;
 					display: flex;
 					&-btn {
@@ -152,7 +146,7 @@
 
 		.tools {
 			display: flex;
-			border-bottom: 1px solid $grayLight;
+			border-bottom: 1px solid vars.$grayLight;
 			padding-bottom: 20px;
 			&__content {
 				display: flex;
@@ -182,7 +176,7 @@
 
 		.payment {
 			min-height: 100px;
-			background-color: $whiteHard;
+			background-color: vars.$whiteHard;
 			display: flex;
 			justify-content: center;
 			align-items: center;

@@ -1,4 +1,4 @@
-@import "../../assets//styles/variables";
+@use "../../assets//styles/variables" as vars;
 
 .quantity__content__selector {
 	font-size: 1.6rem;
@@ -7,7 +7,7 @@
 	font-family: "Jost";
 	width: 135px;
 	height: 45px;
-	border: 1px solid $grayLight;
+	border: 1px solid vars.$grayLight;
 	line-height: 45px;
 	display: flex;
 	&-btn {

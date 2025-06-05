@@ -1,4 +1,4 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .button {
 	box-sizing: border-box;
@@ -9,12 +9,14 @@
 	align-items: center;
 	line-height: 55px;
 	font-family: "Poppins";
-	color: $black;
-	font-size: 1.6em;
-	border: 1px solid $blue;
+	color: vars.$black;
+	font-size: 1.6rem;
+	border: 1px solid vars.$blue;
 	border-radius: 5px;
 	transition: 0.3s;
 	user-select: none;
+	background-color: vars.$white;
+
 	cursor: pointer;
 	&-icon {
 		height: 36px;
@@ -23,21 +25,21 @@
 
 	&.bold {
 		font-weight: bold;
-		color: $blue;
+		color: vars.$blue;
 	}
 
 	&.gray {
-		background-color: $whiteHard;
+		background-color: vars.$whiteHard;
 		border: none;
-		&:hover {
-			background-color: $black;
+		&:hover:enabled {
+			background-color: vars.$black;
 		}
 	}
 
 	&.black {
 		border: none;
-		background-color: $black;
-		color: $white;
+		background-color: vars.$black;
+		color: vars.$white;
 	}
 
 	&.wide {
@@ -56,8 +58,12 @@
 		width: 100%;
 	}
 
-	&:hover {
-		background-color: $blue;
-		color: $white;
+	&:hover:enabled {
+		background-color: vars.$blue;
+		color: vars.$white;
+	}
+
+	&.disabled {
+		opacity: 0.7;
 	}
 }

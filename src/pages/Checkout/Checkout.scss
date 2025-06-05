@@ -1,0 +1,53 @@
+@use "../../assets/styles/variables" as vars;
+
+.checkout {
+	margin: 25px 0px;
+	.fields-group {
+		margin: 25px 0px;
+		width: 600px;
+		min-height: 100px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+
+		&__header {
+			font-size: 4.6rem;
+			font-family: "Volkhov";
+			color: vars.$gray;
+		}
+
+		&__content {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-auto-rows: 80px;
+			&__row {
+				margin-top: 10px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+	}
+}
+
+.custom_input {
+	box-sizing: border-box;
+	border: 1px solid vars.$grayHeavy;
+	outline: none;
+	color: vars.$grayHeavy;
+	font-size: 1.6rem;
+	font-family: "Poppins";
+	background-color: vars.$white;
+	height: 100%;
+	padding-left: 25px;
+
+	&.fullfill {
+		width: 100%;
+	}
+
+	&.narrow {
+		width: 47.5%;
+	}
+}

@@ -1,9 +1,9 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .deals {
 	width: 100%;
 	height: 700px;
-	background-color: $whiteHard;
+	background-color: vars.$whiteHard;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -18,19 +18,19 @@
 
 		&__header {
 			font-size: 4.6rem;
-			color: $gray;
+			color: vars.$gray;
 			font-family: "Volkhow";
 		}
 
 		&__info {
 			font-size: 1.6rem;
-			color: $grayHeavy;
+			color: vars.$grayHeavy;
 			font-family: "Poppins";
 		}
 
 		&__notice {
 			font-size: 2.8rem;
-			color: $gray;
+			color: vars.$gray;
 			font-family: "Poppins";
 		}
 
@@ -48,10 +48,10 @@
 					justify-content: center;
 					align-items: center;
 					border-radius: 10px;
-					background-color: $white;
+					background-color: vars.$white;
 					font-size: 3.2rem;
 					font-family: "DigitalNumbers";
-					box-shadow: -2px 0 10px rgba($black, 0.1);
+					box-shadow: -2px 0 10px rgba(vars.$black, 0.1);
 				}
 
 				.title {
@@ -60,7 +60,7 @@
 					align-items: center;
 					font-family: "Poppins";
 					font-size: 2.4rem;
-					color: $gray;
+					color: vars.$gray;
 				}
 			}
 		}
@@ -69,7 +69,7 @@
 			width: 350px;
 			height: 500px;
 			box-sizing: border-box;
-			border: 1px solid $black;
+			border: 1px solid vars.$black;
 		}
 
 		&.columned {

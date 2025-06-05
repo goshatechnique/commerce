@@ -1,7 +1,7 @@
-@import "../../assets/styles/variables";
+@use "../../assets/styles/variables" as vars;
 
 .footer {
-	border-top: 1px solid $grayLight;
+	border-top: 1px solid vars.$grayLight;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -19,8 +19,8 @@
 		&__logo {
 			border: none;
 			outline: none;
-			background-color: $white;
-			color: $gray;
+			background-color: vars.$white;
+			color: vars.$gray;
 			font-size: 4.6rem;
 			font-style: italic;
 		}
@@ -29,23 +29,23 @@
 			&-link {
 				border: none;
 				outline: none;
-				background-color: $white;
+				background-color: vars.$white;
 				cursor: pointer;
 				padding: 0px 10px;
-				color: $gray;
+				color: vars.$gray;
 				font-size: 1.4rem;
 				line-height: 1.4rem;
 				transition: 0.3s;
 
 				&:hover {
-					color: $grayLight;
+					color: vars.$grayLight;
 				}
 			}
 		}
 	}
 
 	&-copyrights {
-		color: $gray;
+		color: vars.$gray;
 		font-size: 1.2rem;
 		line-height: 1.2rem;
 		display: flex;

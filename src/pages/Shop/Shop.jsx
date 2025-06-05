@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 
@@ -6,31 +6,38 @@ import FilterSection from "./components/FilterSection";
 import Product from "./components/Product";
 import Loader from "../../components/Loader/Loader";
 
-import { getProducts, getProductsByPage, setCurrentPage, updateSort } from "../../app/productSlice";
-import { BRANDS, CATEGORIES, PRICES, TAGS } from "../../utils/helpers";
+import { changeSorting, getProducts, getProductsByPage, setCurrentPage } from "../../app/productSlice";
+import { BRANDS, CATEGORIES, PRICES, SORT_OPTIONS, TAGS } from "../../utils/helpers";
 import "./Shop.scss";
 
 function Shop() {
-	const { products, pagesTotal, currentPage, filters, loading } = useSelector((state) => state.products);
+	const [isVisible, setIsVisible] = useState(false);
+	const [sortingType, setSortingType] = useState(null);
+	const { productsVisible, pagesTotal, currentPage, filters, sorting, loading } = useSelector(
+		(state) => state.products
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { id } = useParams();
 
-	let isProductsExist = !!products?.length;
+	let isProductsExist = !!productsVisible?.length;
 	let isProductsLoading = loading;
 
 	useEffect(() => {
 		dispatch(getProducts());
-	}, [filters, dispatch]);
+	}, [filters, sorting, dispatch]);
 
 	useEffect(() => {
 		dispatch(getProductsByPage());
 		if (Number(id) !== currentPage) navigate(`/shop/${currentPage}`);
 	}, [dispatch, navigate, currentPage, id]);
 
+	const changeSortingHandler = ({ type = null, field = null }) => dispatch(changeSorting({ type, field }));
+
 	const setCurrentPageHandler = (i) => dispatch(setCurrentPage(i));
 
 	function createPageSelector() {
+		//* some bug with redirect to 1 page while update sorting
 		let startPage, endPage;
 
 		if (pagesTotal <= 3) {
@@ -66,7 +73,7 @@ function Shop() {
 	function renderProductsList() {
 		if (isProductsLoading) return <Loader />;
 		if (!isProductsExist) return <div>No products for you</div>;
-		return products?.map((product) => <Product key={product.id} product={product} />);
+		return productsVisible?.map((product) => <Product key={product.id} product={product} />);
 	}
 
 	return (
@@ -79,10 +86,27 @@ function Shop() {
 				<FilterSection name="Prices" tags={PRICES} category="price" specialStyles="columnned" />
 			</div>
 			<div className="products-section">
-				<div className="products-section__title" onClick={() => dispatch(updateSort())}>
-					Products
+				<div className="products-section__sorting" onClick={() => setIsVisible(!isVisible)}>
+					{`Sort by ${sortingType ?? "..."}`}
+					{isVisible ? (
+						<div className="container">
+							{SORT_OPTIONS.map((option) => (
+								<div
+									className="container__option"
+									key={option.id}
+									onClick={() => {
+										changeSortingHandler(option.value);
+										setIsVisible(!isVisible);
+										setSortingType(option.label);
+									}}
+								>
+									{option.label}
+								</div>
+							))}
+						</div>
+					) : null}
 				</div>
-				<div className={`products-section__container ${isProductsLoading || !isProductsExist ? "centered" : null}`}>
+				<div className={`products-section__container ${isProductsLoading || !isProductsExist ? "centered" : ""}`}>
 					{renderProductsList()}
 				</div>
 				<div className="products-section__pages">{pagesTotal >= 0 ? createPageSelector() : null}</div>
