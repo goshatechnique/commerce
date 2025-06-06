@@ -84,6 +84,18 @@
 		&-section {
 			overflow-y: scroll;
 
+			&__empty {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				font-size: 2rem;
+				height: 100%;
+				&-message {
+					padding: 20px 0px;
+				}
+			}
+
 			&__product {
 				display: grid;
 				grid-template-columns: 200px 1fr;
@@ -111,6 +123,7 @@
 						font-family: "Volkhow";
 						font-size: 2.2rem;
 						color: vars.$black;
+						padding-right: 10px;
 					}
 
 					&__price {

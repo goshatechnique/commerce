@@ -1,0 +1,28 @@
+@use "../../assets/styles/variables" as vars;
+
+.not-found {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Jost";
+	color: vars.$black;
+	user-select: none;
+
+	&__heading {
+		font-size: 30rem;
+		line-height: 30rem;
+	}
+
+	&__warn {
+		padding-top: 15px;
+		font-size: 2.5rem;
+		color: vars.$gray;
+	}
+
+	&__message {
+		padding: 15px 0px;
+		font-size: 2rem;
+		color: vars.$gray;
+	}
+}

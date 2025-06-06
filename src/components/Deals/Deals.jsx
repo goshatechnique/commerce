@@ -1,15 +1,21 @@
+import { useEffect, useState } from "react";
 import moment from "moment";
+
 import Button from "../Button/Button";
 import "./Deals.scss";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 function Deals() {
+	const navigate = useNavigate();
+
 	const [date, setDate] = useState({
 		days: null,
 		hours: null,
 		mins: null,
 		secs: null,
 	});
+
+	const toShopHandler = () => navigate("/shop/1");
 
 	function calculateDate() {
 		const now = moment();
@@ -38,7 +44,7 @@ function Deals() {
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem.
 					Scelerisque duis ultrices sollicitudin.
 				</div>
-				<Button text="Buy Now" specialStyles="black tight"></Button>
+				<Button text="Buy Now" specialStyles="black tight" onClick={toShopHandler}></Button>
 				<div className="deals-section__notice">Hurry, Before It's To Late!</div>
 				<div className="deals-section__timer">
 					<div className="wrapper">

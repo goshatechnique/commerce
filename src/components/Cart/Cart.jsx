@@ -36,6 +36,11 @@ const Cart = ({ isOpen, onClose }) => {
 		onClose();
 	};
 
+	const toHomeHandler = () => {
+		navigate("/");
+		onClose();
+	};
+
 	function ShippingInfo() {
 		return total.totalPrice > 75 ? (
 			<div className="shipping">Shipping will be free for this order</div>
@@ -88,6 +93,12 @@ const Cart = ({ isOpen, onClose }) => {
 						{items.map((item) => (
 							<CartItem key={item.id} item={item} />
 						))}
+						{!items.length ? (
+							<div className="cart-section__empty">
+								<span className="cart-section__empty-message">The basket is currently empty</span>
+								<Button text="Back to Home" specialStyles="black" onClick={toHomeHandler} />
+							</div>
+						) : null}
 					</div>
 					<div className="cart-footer">
 						<div className="divider" />
@@ -95,7 +106,12 @@ const Cart = ({ isOpen, onClose }) => {
 							<div>Subtotal</div>
 							<div>${formatPrice(total.subtotal)}</div>
 						</div>
-						<Button text="Checkout" specialStyles="black fullfill" onClick={toCheckoutHandler} />
+						<Button
+							text="Checkout"
+							specialStyles="black fullfill"
+							onClick={toCheckoutHandler}
+							disabled={!items?.length}
+						/>
 						<Button text="View Cart" specialStyles="fullfill" onClick={toBasketHandler} />
 					</div>
 				</div>

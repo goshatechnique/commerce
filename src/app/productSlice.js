@@ -84,12 +84,14 @@ const productSlice = createSlice({
 			} else {
 				state.filters.price = { min: action.payload.min, max: action.payload.max };
 			}
+			state.currentPage = 1;
 		},
 		changeSorting: (state, action) => {
 			state.sorting = {
 				type: action.payload.type,
 				field: action.payload.field,
 			};
+			state.currentPage = 1;
 		},
 		resetFilters: (state) => {
 			state.filters = {
