@@ -37,7 +37,6 @@ function Shop() {
 	const setCurrentPageHandler = (i) => dispatch(setCurrentPage(i));
 
 	function createPageSelector() {
-		//* some bug with redirect to 1 page while update sorting
 		let startPage, endPage;
 
 		if (pagesTotal <= 3) {
