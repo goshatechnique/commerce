@@ -4,7 +4,7 @@ import { changeFilters, changeFilterPrice } from "../../../app/productSlice";
 import { formatTag } from "../../../utils/helpers";
 import arrowDown from "../../../assets/images/arrow-down.svg";
 
-function FilterSection({ name, tags, category, specialStyles = "" }) {
+function FiltersSection({ name, tags, category, specialStyles = "" }) {
 	const [isVisible, setIsVisible] = useState(true);
 	const { filters } = useSelector((state) => state.products);
 	const dispatch = useDispatch();
@@ -68,4 +68,4 @@ function FilterSection({ name, tags, category, specialStyles = "" }) {
 	);
 }
 
-export default FilterSection;
+export default FiltersSection;

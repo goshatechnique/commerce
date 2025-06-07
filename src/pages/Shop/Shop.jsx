@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 
-import FilterSection from "./components/FilterSection";
 import Product from "./components/Product";
 import Loader from "../../components/Loader/Loader";
 
 import { changeSorting, getProducts, getProductsByPage, setCurrentPage } from "../../app/productSlice";
 import { BRANDS, CATEGORIES, PRICES, SORT_OPTIONS, TAGS } from "../../utils/helpers";
 import "./Shop.scss";
+import FiltersSection from "./components/FiltersSection";
 
 function Shop() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -79,10 +79,10 @@ function Shop() {
 		<div className="shop">
 			<div className="filters-section">
 				<div className="filters-section__title">Filters</div>
-				<FilterSection name="Brands" tags={BRANDS} category="brand" />
-				<FilterSection name="Category" tags={CATEGORIES} category="category" specialStyles="columnned" />
-				<FilterSection name="Tags" tags={TAGS} category="category" />
-				<FilterSection name="Prices" tags={PRICES} category="price" specialStyles="columnned" />
+				<FiltersSection name="Brands" tags={BRANDS} category="brand" />
+				<FiltersSection name="Category" tags={CATEGORIES} category="category" specialStyles="columnned" />
+				<FiltersSection name="Tags" tags={TAGS} category="category" />
+				<FiltersSection name="Prices" tags={PRICES} category="price" specialStyles="columnned" />
 			</div>
 			<div className="products-section">
 				<div className="products-section__sorting" onClick={() => setIsVisible(!isVisible)}>
