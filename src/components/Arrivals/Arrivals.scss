@@ -32,3 +32,25 @@
 		gap: 30px;
 	}
 }
+
+@media (max-width: 1280px) {
+	.arrivals {
+		width: 90%;
+
+		&__navigator {
+			gap: 1rem;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		&__content {
+			justify-content: center;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.arrivals {
+		width: 100%;
+	}
+}

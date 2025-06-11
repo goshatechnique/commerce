@@ -20,7 +20,7 @@ function Home() {
 	}
 
 	return (
-		<div className="Home">
+		<div className="home">
 			<Sales />
 
 			<div className="brands-navigator">

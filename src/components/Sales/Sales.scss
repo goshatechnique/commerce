@@ -2,13 +2,15 @@
 
 .sales {
 	width: 1200px;
-	display: flex;
-	justify-content: space-between;
-	max-height: 700px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	overflow: hidden;
+	grid-gap: 1rem;
+	gap: 1rem;
 
 	&-image {
 		border-radius: 10px;
-		max-height: 100%;
+		max-width: 100%;
 	}
 
 	&-content {
@@ -51,10 +53,53 @@
 			border-radius: 10px;
 			overflow: hidden;
 			height: 150px;
-			&_img {
+			&-img {
 				border-radius: 10px;
 				min-width: 100%;
 			}
+		}
+	}
+}
+
+@media (max-width: 1280px) {
+	.sales {
+		width: 100%;
+		&-content {
+			display: grid;
+			grid-template-rows: 150px 1fr 150px;
+			gap: 1rem;
+			&__center {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-direction: column;
+				text-transform: uppercase;
+				text-align: center;
+				gap: 10px;
+
+				&-h1 {
+					font-size: 12rem;
+					line-height: 120px;
+				}
+
+				&-h2 {
+					font-size: 5rem;
+					line-height: 50px;
+				}
+
+				&-h3 {
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1060px) {
+	.sales {
+		grid-template-columns: 1fr;
+		&-image {
+			display: none;
 		}
 	}
 }

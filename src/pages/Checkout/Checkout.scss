@@ -27,12 +27,26 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				position: relative;
 			}
 		}
 	}
 }
 
-.custom_input {
+.input-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	&.wide {
+		width: 100%;
+	}
+
+	&.narrow {
+		width: 48%;
+	}
+}
+
+.custom-input {
 	box-sizing: border-box;
 	border: 1px solid vars.$grayHeavy;
 	outline: none;
@@ -42,12 +56,13 @@
 	background-color: vars.$white;
 	height: 100%;
 	padding-left: 25px;
+	width: 100%;
 
-	&.fullfill {
-		width: 100%;
-	}
-
-	&.narrow {
-		width: 47.5%;
+	&__error {
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		user-select: none;
+		color: vars.$red;
 	}
 }

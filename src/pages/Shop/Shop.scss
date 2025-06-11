@@ -2,15 +2,12 @@
 
 .shop {
 	width: 1200px;
-	display: flex;
-	flex-direction: row;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
+	display: grid;
+	grid-template-columns: 240px 1fr;
+	grid-template-areas: "filters products";
 
 	.filters-section {
-		width: 20%;
+		grid-area: filters;
 		align-self: start;
 		color: vars.$black;
 		font-size: 3rem;
@@ -19,8 +16,7 @@
 	}
 
 	.products-section {
-		width: 80%;
-		min-height: 1030px;
+		grid-area: products;
 		&__title {
 			align-self: start;
 			color: vars.$black;
@@ -66,7 +62,7 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 			gap: 3rem;
-			height: 100%;
+			// height: 100%;
 
 			&.centered {
 				display: flex;
@@ -226,6 +222,55 @@
 			align-items: center;
 			font-family: "Jost";
 			font-weight: bold;
+		}
+	}
+}
+
+@media (max-width: 1440px) {
+	.shop {
+		grid-template-columns: 180px 1fr;
+	}
+}
+
+@media (max-width: 1280px) {
+	.shop {
+		width: 810px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.shop {
+		width: 690px;
+	}
+
+	.product {
+		width: 240px;
+		height: 400px;
+	}
+}
+
+@media (max-width: 768px) {
+	.shop {
+		width: 630px;
+		grid-template-areas: "filters filters" "products products";
+
+		& .products-section__container {
+			justify-content: center;
+		}
+	}
+
+	.product {
+		width: 300px;
+		height: 500px;
+	}
+}
+
+@media (max-width: 700px) {
+	.shop {
+		width: 90%;
+
+		&.products-section__container {
+			justify-content: center;
 		}
 	}
 }

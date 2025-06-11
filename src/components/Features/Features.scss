@@ -31,3 +31,37 @@
 		}
 	}
 }
+
+@media (max-width: 1024px) {
+	.features {
+		margin: 15px 0px;
+		&__content {
+			margin: 0px 5px;
+
+			&-icon {
+				height: 30px;
+				margin: 0px 5px;
+			}
+
+			&__info {
+				&-title {
+					font-size: 1.6rem;
+				}
+
+				&-text {
+					font-size: 1.2rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.features {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-auto-rows: 40px;
+		grid-gap: 3rem;
+		gap: 3rem;
+	}
+}
