@@ -24,7 +24,7 @@
 		margin: 0px 100px;
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: 1.5fr 2fr 1fr;
+		grid-template-rows: 1.5fr 540px 1fr;
 		font-family: "Volkhov";
 
 		&__header {
@@ -49,6 +49,7 @@
 			align-items: center;
 			user-select: none;
 			cursor: pointer;
+			gap: 1rem;
 		}
 
 		&__divider {
@@ -76,6 +77,39 @@
 			justify-content: center;
 			align-items: center;
 			flex-direction: column;
+		}
+
+		&__actions {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 1440px) {
+	.auth-page {
+		grid-template-columns: 1fr;
+		min-width: 0px;
+		.auth-image {
+			display: none;
+		}
+
+		.auth-form {
+			margin: 0px 20px;
+			&__social-buttons {
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.auth-page {
+		.auth-form {
+			&__fields {
+				flex-direction: column;
+			}
+			&__social-buttons {
+				flex-direction: column;
+			}
 		}
 	}
 }

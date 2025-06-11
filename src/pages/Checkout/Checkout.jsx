@@ -1,10 +1,36 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+
 import Button from "../../components/Button/Button";
+import { useValidation } from "../../hooks/useValidation";
+import { updateCheckout } from "../../app/cartSlice";
 import "./Checkout.scss";
 
-function Input({ placeholder = "", specialstyles = "", value, onChange }) {
+function Input({
+	type = "text",
+	placeholder = "",
+	isRequired = false,
+	specialstyles = "",
+	isValidationEnabled = true,
+}) {
+	const [isTouched, setIsTouched] = useState(false);
+	const { validate } = useValidation();
+	const dispatch = useDispatch();
+	const { value } = useSelector((state) => state.cart.checkout[type]);
+	const errorMessage = isValidationEnabled && isTouched ? validate(value, type, isRequired) : null;
+
 	return (
-		<input className={`custom_input ${specialstyles}`} placeholder={placeholder} value={value} onChange={onChange} />
+		<div className={`input-wrapper ${specialstyles}`}>
+			{errorMessage && <span className="custom-input__error">{errorMessage}</span>}
+			<input
+				className={`custom-input ${errorMessage ? "error" : ""}`}
+				placeholder={placeholder}
+				value={value}
+				onChange={(e) => dispatch(updateCheckout({ field: type, data: e.target.value }))}
+				onBlur={() => setIsTouched(true)}
+			/>
+		</div>
 	);
 }
 
@@ -18,132 +44,52 @@ function FieldGroup({ title, children }) {
 }
 
 function Checkout() {
-	const [paymentInfo, setPaymentInfo] = useState({
-		email: "",
-		country: "",
-		firstname: "",
-		lastname: "",
-		address: "",
-		city: "",
-		postalCode: "",
-		cardType: "",
-		cardNumber: "",
-		expirationDate: "",
-		securityCode: "",
-		cardHolderName: "",
-	});
+	const navigate = useNavigate();
 
-	const onChangeHandler = (e, fieldName) => setPaymentInfo({ ...paymentInfo, [fieldName]: e.target.value });
+	const onPaymentHandler = () => {
+		alert("Your order is placed!");
+		navigate("/");
+	};
 
 	return (
 		<div className="checkout">
 			<FieldGroup title="Contact">
-				{
-					<div className="fields-group__content__row">
-						<Input
-							placeholder="Email Address"
-							specialstyles="fullfill"
-							value={paymentInfo.email}
-							onChange={(e) => onChangeHandler(e, "email")}
-						/>
-					</div>
-				}
+				<div className="fields-group__content__row">
+					<Input type="email" placeholder="Email Address" isRequired={true} />
+				</div>
 			</FieldGroup>
 			<FieldGroup title="Delivery">
-				{
-					<>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="Country/Region"
-								specialstyles="fullfill"
-								value={paymentInfo.country}
-								onChange={(e) => onChangeHandler(e, "country")}
-							/>
-						</div>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="First name"
-								specialstyles={"narrow"}
-								value={paymentInfo.firstname}
-								onChange={(e) => onChangeHandler(e, "firstname")}
-							/>
-							<Input
-								placeholder="Last name"
-								specialstyles={"narrow"}
-								value={paymentInfo.lastname}
-								onChange={(e) => onChangeHandler(e, "lastname")}
-							/>
-						</div>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="Address"
-								specialstyles="fullfill"
-								value={paymentInfo.address}
-								onChange={(e) => onChangeHandler(e, "address")}
-							/>
-						</div>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="City"
-								specialstyles={"narrow"}
-								value={paymentInfo.city}
-								onChange={(e) => onChangeHandler(e, "city")}
-							/>
-							<Input
-								placeholder="Postal Code"
-								specialstyles={"narrow"}
-								value={paymentInfo.postalCode}
-								onChange={(e) => onChangeHandler(e, "postalCode")}
-							/>
-						</div>
-					</>
-				}
+				<div className="fields-group__content__row">
+					<Input type="country" placeholder="Country/Region" specialstyles="wide" isRequired={true} />
+				</div>
+				<div className="fields-group__content__row">
+					<Input type="firstName" placeholder="First name" specialstyles="narrow" isRequired={true} />
+					<Input type="lastName" placeholder="Last name" specialstyles="narrow" isRequired={true} />
+				</div>
+				<div className="fields-group__content__row">
+					<Input type="address" placeholder="Address" specialstyles="wide" isRequired={true} />
+				</div>
+				<div className="fields-group__content__row">
+					<Input type="city" placeholder="City" specialstyles="narrow" isRequired={true} />
+					<Input type="postalCode" placeholder="Postal code" specialstyles="narrow" isRequired={true} />
+				</div>
 			</FieldGroup>
 			<FieldGroup title="Payment">
-				{
-					<>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="Credit Card"
-								specialstyles="fullfill"
-								value={paymentInfo.cardType}
-								onChange={(e) => onChangeHandler(e, "cardType")}
-							/>
-						</div>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="Card Number"
-								specialstyles="fullfill"
-								value={paymentInfo.cardNumber}
-								onChange={(e) => onChangeHandler(e, "cardNumber")}
-							/>
-						</div>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="Expiration Date"
-								specialstyles={"narrow"}
-								value={paymentInfo.expirationDate}
-								onChange={(e) => onChangeHandler(e, "expirationDate")}
-							/>
-							<Input
-								placeholder="Security Code"
-								specialstyles={"narrow"}
-								value={paymentInfo.securityCode}
-								onChange={(e) => onChangeHandler(e, "securityCode")}
-							/>
-						</div>
-						<div className="fields-group__content__row">
-							<Input
-								placeholder="Card Holder Name"
-								specialstyles="fullfill"
-								value={paymentInfo.cardHolderName}
-								onChange={(e) => onChangeHandler(e, "cardHolderName")}
-							/>
-						</div>
-					</>
-				}
+				<div className="fields-group__content__row">
+					<Input type="cardType" placeholder="Card type" specialstyles="wide" isRequired={true} />
+				</div>
+				<div className="fields-group__content__row">
+					<Input type="cardNumber" placeholder="Card number" specialstyles="wide" isRequired={true} />
+				</div>
+				<div className="fields-group__content__row">
+					<Input type="expirationDate" placeholder="Expiration Date" specialstyles="narrow" isRequired={true} />
+					<Input type="cvc" placeholder="Security Code" specialstyles="narrow" isRequired={true} />
+				</div>
+				<div className="fields-group__content__row">
+					<Input type="cardHolderName" placeholder="Card Holder Name" specialstyles="wide" isRequired={true} />
+				</div>
 			</FieldGroup>
-			<Button text="Pay Now" specialStyles="black fullfill" onClick={() => console.log(paymentInfo)} />
+			<Button text="Pay Now" specialStyles="black fullfill" onClick={onPaymentHandler} />
 		</div>
 	);
 }

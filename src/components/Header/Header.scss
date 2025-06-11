@@ -1,11 +1,24 @@
 @use "../../assets/styles/variables" as vars;
 
+.header__wrapper {
+	width: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background-color: vars.$white;
+	border-bottom: 1px solid vars.$grayLight;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	margin-bottom: 50px;
+}
+
 .header {
-	margin: 100px 200px 150px;
-	width: 1200px;
 	display: grid;
+	width: 1200px;
 	grid-template-columns: 1fr 2fr 250px;
 	grid-template-rows: 56px;
+	box-sizing: border-box;
 
 	&__section {
 		display: flex;
@@ -60,7 +73,6 @@
 	.logo {
 		border: none;
 		outline: none;
-		background-color: vars.$white;
 		color: vars.$gray;
 		font-size: 56px;
 		line-height: 56px;
@@ -70,9 +82,47 @@
 
 	.active {
 		border-bottom: 1px solid vars.$gray;
+		box-sizing: border-box;
 	}
 
 	.flex-ended {
 		justify-content: flex-end;
+	}
+}
+
+@media (max-width: 1240px) {
+	.header {
+		width: 100%;
+	}
+}
+
+@media (max-width: 960px) {
+	.header {
+		grid-template-columns: 170px 1fr 170px;
+	}
+}
+
+@media (max-width: 830px) {
+	.header {
+		grid-template-columns: 120px 1fr 120px;
+		.logo {
+			font-size: 4rem;
+		}
+		&__section__link {
+			height: auto;
+			width: auto;
+		}
+	}
+}
+
+@media (max-width: 630px) {
+	.header {
+		grid-template-columns: 1fr 120px;
+		.logo {
+			display: none;
+		}
+		&__section__link {
+			font-size: 1.3rem;
+		}
 	}
 }

@@ -1,6 +1,6 @@
 @use "../../assets/styles/variables" as vars;
 
-.Home {
+.home {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -8,7 +8,6 @@
 	width: 100%;
 
 	.brands-navigator {
-		padding: 30px 0px;
 		width: 1200px;
 		height: 100px;
 		display: flex;
@@ -21,6 +20,38 @@
 			&:hover {
 				transform: scale(1.1);
 			}
+		}
+	}
+}
+
+@media (max-width: 1060px) {
+	.home {
+		.brands-navigator {
+			justify-content: center;
+			&__link {
+				padding: 0px 10px;
+				height: 20px;
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.home {
+		.brands-navigator {
+			justify-content: center;
+			&__link {
+				padding: 0px 5px;
+				height: 15px;
+			}
+		}
+	}
+}
+
+@media (max-width: 568px) {
+	.home {
+		.brands-navigator {
+			display: none;
 		}
 	}
 }

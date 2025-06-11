@@ -4,6 +4,20 @@ import { loadCartFromLocalStorage, saveCartToLocalStorage } from "../utils/helpe
 const initialState = {
 	isOpen: false,
 	items: loadCartFromLocalStorage(),
+	checkout: {
+		email: "",
+		country: "",
+		firstName: "",
+		lastName: "",
+		address: "",
+		city: "",
+		postalCode: "",
+		cardType: "",
+		cardNumber: "",
+		expirationDate: "",
+		cvc: "",
+		cardHolderName: "",
+	},
 };
 
 const cartSlice = createSlice({
@@ -49,8 +63,11 @@ const cartSlice = createSlice({
 			state.items = [];
 			saveCartToLocalStorage(state.items);
 		},
+		updateCheckout(state, action) {
+			state.checkout = { ...state.checkout, [action.payload.field]: action.payload.data };
+		},
 	},
 });
 
-export const { openCart, hideCart, addItem, removeItem, updateQuantity, clearCart } = cartSlice.actions;
+export const { openCart, hideCart, addItem, removeItem, updateQuantity, clearCart, updateCheckout } = cartSlice.actions;
 export default cartSlice.reducer;

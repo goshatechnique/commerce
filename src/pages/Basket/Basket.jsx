@@ -22,6 +22,7 @@ function Basket() {
 	}
 
 	const toHomeHandler = () => navigate("/");
+	const toCheckoutHandler = () => navigate("/checkout");
 
 	const total = calculateTotal(items);
 
@@ -83,7 +84,12 @@ function Basket() {
 								<span>Subtotal:</span>
 								<span>${formatPrice(total.subtotal)}</span>
 							</div>
-							<Button text="Checkout" specialStyles="fullfill black" disabled={!items?.length}></Button>
+							<Button
+								text="Checkout"
+								specialStyles="fullfill black"
+								onClick={toCheckoutHandler}
+								disabled={!items?.length}
+							></Button>
 						</div>
 					</div>
 				</div>

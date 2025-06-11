@@ -33,19 +33,24 @@ function Auth() {
 	});
 
 	function handleEmailRegistration() {
-		dispatch(registerWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then(() =>
-			navigate(`/`)
-		);
+		dispatch(registerWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then((res) => {
+			if (res?.error) return;
+			navigate(`/`);
+		});
 	}
 
 	function handleEmailLogin() {
-		dispatch(loginWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then(() =>
-			navigate(`/`)
-		);
+		dispatch(loginWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then((res) => {
+			if (res?.error) return;
+			navigate(`/`);
+		});
 	}
 
 	function handleGoogleLogin() {
-		dispatch(loginWithGoogle({ email: userData.Email, password: userData.Password })).then(() => navigate(`/`));
+		dispatch(loginWithGoogle({ email: userData.Email, password: userData.Password })).then((res) => {
+			if (res?.error) return;
+			navigate(`/`);
+		});
 	}
 
 	function handleUserData(event, fieldName) {
@@ -57,9 +62,8 @@ function Auth() {
 		});
 	}
 
-	function toggleAuthType() {
+	const toggleAuthType = () =>
 		setAuthType((prevType) => (prevType === AUTH_TYPES.SIGN_IN ? AUTH_TYPES.SIGN_UP : AUTH_TYPES.SIGN_IN));
-	}
 
 	return (
 		<div className="auth-page">
@@ -155,12 +159,12 @@ function Auth() {
 						<Button
 							text={authType === AUTH_TYPES.SIGN_IN ? "Sign in" : "Register"}
 							onClick={authType === AUTH_TYPES.SIGN_IN ? handleEmailLogin : handleEmailRegistration}
-							specialStyles="black bold wide margin"
+							specialStyles="black bold fullfill margin"
 						/>
 						<Button
 							text={authType === AUTH_TYPES.SIGN_IN ? "Register Now" : "Back to Login"}
 							onClick={toggleAuthType}
-							specialStyles="bold wide margin"
+							specialStyles="bold fullfill margin"
 						/>
 					</div>
 				</div>

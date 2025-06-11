@@ -11,7 +11,7 @@ function Follow() {
 					Scelerisque duis ultrices sollicitudin
 				</span>
 			</div>
-			<img alt="#" src={inst} style={{ width: "100%", margin: "50px 0px" }} />
+			<img alt="#" src={inst} className="follow__content-img" />
 		</div>
 	);
 }

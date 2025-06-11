@@ -17,7 +17,7 @@ function Sales() {
 			<img src={blank} alt="#" className="sales-image" />
 			<div className="sales-content">
 				<div className="sales-content__wrapper">
-					<img src={blank2} alt="#" className="sales__content__wrapper-img" />
+					<img src={blank2} alt="#" className="sales-content__wrapper-img" />
 				</div>
 				<div className="sales-content__center">
 					<span className="sales-content__center-h2">ultimate</span>
@@ -25,8 +25,8 @@ function Sales() {
 					<span className="sales-content__center-h3">new collection</span>
 					<Button text="SHOP NOW" specialStyles="black" onClick={toProducts} />
 				</div>
-				<div className="sales__content__wrapper">
-					<img src={blank3} alt="#" className="sales__content__wrapper-img" />
+				<div className="sales-content__wrapper">
+					<img src={blank3} alt="#" className="sales-content__wrapper-img" />
 				</div>
 			</div>
 			<img src={blank4} alt="#" className="sales-image" />
