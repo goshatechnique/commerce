@@ -152,7 +152,7 @@ export const calculateTotal = (items = []) => {
 
 export const loadCartFromLocalStorage = () => {
 	try {
-		const userId = JSON.parse(localStorage.getItem("uid")) || "";
+		const userId = JSON.parse(localStorage.getItem("uid")) || "unauthorized";
 		const serializedCart = localStorage.getItem(`cart_${userId}`);
 		if (serializedCart === null) {
 			return [];
@@ -166,7 +166,7 @@ export const loadCartFromLocalStorage = () => {
 
 export const saveCartToLocalStorage = (cart) => {
 	try {
-		const userId = JSON.parse(localStorage.getItem("uid")) || "";
+		const userId = JSON.parse(localStorage.getItem("uid")) || "unauthorized";
 		const serializedCart = JSON.stringify(cart);
 		localStorage.setItem(`cart_${userId}`, serializedCart);
 	} catch (error) {

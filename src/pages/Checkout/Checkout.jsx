@@ -1,38 +1,10 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
 import Button from "../../components/Button/Button";
-import { useValidation } from "../../hooks/useValidation";
-import { updateCheckout } from "../../app/cartSlice";
+import Input from "./Input.jsx/Input";
+import { clearCart } from "../../app/cartSlice";
 import "./Checkout.scss";
-
-function Input({
-	type = "text",
-	placeholder = "",
-	isRequired = false,
-	specialstyles = "",
-	isValidationEnabled = true,
-}) {
-	const [isTouched, setIsTouched] = useState(false);
-	const { validate } = useValidation();
-	const dispatch = useDispatch();
-	const { value } = useSelector((state) => state.cart.checkout[type]);
-	const errorMessage = isValidationEnabled && isTouched ? validate(value, type, isRequired) : null;
-
-	return (
-		<div className={`input-wrapper ${specialstyles}`}>
-			{errorMessage && <span className="custom-input__error">{errorMessage}</span>}
-			<input
-				className={`custom-input ${errorMessage ? "error" : ""}`}
-				placeholder={placeholder}
-				value={value}
-				onChange={(e) => dispatch(updateCheckout({ field: type, data: e.target.value }))}
-				onBlur={() => setIsTouched(true)}
-			/>
-		</div>
-	);
-}
 
 function FieldGroup({ title, children }) {
 	return (
@@ -45,9 +17,11 @@ function FieldGroup({ title, children }) {
 
 function Checkout() {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const onPaymentHandler = () => {
 		alert("Your order is placed!");
+		dispatch(clearCart());
 		navigate("/");
 	};
 
