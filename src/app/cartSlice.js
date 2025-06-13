@@ -3,7 +3,7 @@ import { loadCartFromLocalStorage, saveCartToLocalStorage } from "../utils/helpe
 
 const initialState = {
 	isOpen: false,
-	items: loadCartFromLocalStorage(),
+	items: [],
 	checkout: {
 		email: "",
 		country: "",
@@ -46,6 +46,9 @@ const cartSlice = createSlice({
 			}
 			saveCartToLocalStorage(state.items);
 		},
+		getCartFromLocalStorage(state) {
+			state.items = loadCartFromLocalStorage();
+		},
 		removeItem(state, action) {
 			const id = action.payload;
 			state.items = state.items.filter((i) => i.id !== id);
@@ -69,5 +72,14 @@ const cartSlice = createSlice({
 	},
 });
 
-export const { openCart, hideCart, addItem, removeItem, updateQuantity, clearCart, updateCheckout } = cartSlice.actions;
+export const {
+	openCart,
+	hideCart,
+	addItem,
+	getCartFromLocalStorage,
+	removeItem,
+	updateQuantity,
+	clearCart,
+	updateCheckout,
+} = cartSlice.actions;
 export default cartSlice.reducer;

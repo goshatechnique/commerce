@@ -69,7 +69,14 @@
 			width: 350px;
 			height: 500px;
 			box-sizing: border-box;
-			border: 1px solid vars.$black;
+			overflow: hidden;
+			border-radius: 10px;
+			&-img {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 
 		&.columned {

@@ -44,7 +44,7 @@
 
 			&-info {
 				display: grid;
-				grid-template-columns: 170px 1fr;
+				grid-template-columns: 170px minmax(150px, 1fr);
 				grid-template-rows: 1fr 100px;
 				grid-template-areas:
 					"img title"
@@ -118,6 +118,69 @@
 					padding: 15px 0px;
 					border-bottom: 1px solid vars.$grayLight;
 					border-top: 1px solid vars.$grayLight;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.basket {
+		width: 100%;
+		.table {
+			font-size: 1.8rem;
+			&-product {
+				grid-template-columns: 1fr 120px 150px 120px;
+				&-title {
+					padding: 15px 0px 0px 2px;
+				}
+				&-btn {
+					padding: 15px 0px 0px 2px;
+				}
+				&-info {
+					grid-template-columns: 170px minmax(150px, 1fr);
+				}
+				&-image {
+					img {
+						max-width: 170px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.basket {
+		.table {
+			&-header {
+				grid-template-columns: 1fr 70px 90px 70px;
+			}
+			&-quantity {
+				.quantity__content__selector-btn {
+					width: 25px;
+				}
+			}
+			font-size: 1.5rem;
+			&-product {
+				grid-template-columns: 1fr 70px 90px 70px;
+				&-title {
+					padding: 5px 0px 0px 2px;
+					font-size: 1.4rem;
+				}
+				&-btn {
+					padding: 5px 0px 0px 2px;
+				}
+				&-info {
+					grid-template-columns: minmax(60px, 1fr) 80px;
+					grid-template-areas:
+						"img img"
+						"title remove";
+				}
+				&-image {
+					img {
+						max-width: 170px;
+					}
 				}
 			}
 		}

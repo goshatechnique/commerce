@@ -7,6 +7,7 @@ import {
 	onAuthStateChanged,
 } from "firebase/auth";
 import { auth, googleProvider } from "../utils/firebase";
+import { getCartFromLocalStorage } from "./cartSlice";
 
 export const subscribeToAuthChanges = () => (dispatch) => {
 	return new Promise((resolve) => {
@@ -17,8 +18,9 @@ export const subscribeToAuthChanges = () => (dispatch) => {
 				localStorage.setItem("uid", serializedUserId);
 			} else {
 				dispatch(clearUser());
-				localStorage.clear("uid");
+				localStorage.removeItem("uid");
 			}
+			dispatch(getCartFromLocalStorage());
 			resolve();
 		});
 	});

@@ -165,5 +165,19 @@
 @media (max-width: 768px) {
 	.cart-container {
 		width: 100%;
+		.cart {
+			margin: 10px;
+			&-header {
+				.title {
+					font-size: 2.4rem;
+				}
+				.shipping {
+					font-size: 2rem;
+				}
+			}
+		}
+		.cart-section__product {
+			grid-template-columns: minmax(100px, 200px) 1fr;
+		}
 	}
 }

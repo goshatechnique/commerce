@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import moment from "moment";
 
 import Button from "../Button/Button";
+import blank from "../../assets/images/blank.png";
 import "./Deals.scss";
-import { useNavigate } from "react-router";
 
 function Deals() {
 	const navigate = useNavigate();
@@ -66,9 +67,16 @@ function Deals() {
 				</div>
 			</div>
 			<div className="deals-section">
-				<div className="deals-section__card">1</div>
-				<div className="deals-section__card">2</div>
-				<div className="deals-section__card">3</div>
+				<div className="deals-section__card">
+					<img src={blank} className="deals-section__card-img" alt="deals" />
+				</div>
+				<div className="deals-section__card">
+					<img src={blank} className="deals-section__card-img" alt="deals" />
+				</div>
+				<div className="deals-section__card">
+					<img src={blank} className="deals-section__card-img" alt="deals" />
+				</div>
+				;
 			</div>
 		</div>
 	);

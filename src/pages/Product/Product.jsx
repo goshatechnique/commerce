@@ -28,27 +28,21 @@ function Product() {
 		});
 	}, [id]);
 
-	function addQuantity() {
+	const addQuantity = () =>
 		setQuantity((prevCount) => {
 			const newCount = prevCount + 1;
 			return newCount <= product.stock ? newCount : prevCount;
 		});
-	}
 
-	function subQuantity() {
+	const subQuantity = () =>
 		setQuantity((prevCount) => {
 			const newCount = prevCount - 1;
 			return newCount <= 0 ? prevCount : newCount;
 		});
-	}
 
-	function onClickImageHandler(id) {
-		setGalleryIndex(id);
-	}
+	const onClickImageHandler = (id) => setGalleryIndex(id);
 
-	function addToBasketHandler() {
-		dispatch(addItem({ ...product, quantity }));
-	}
+	const addToBasketHandler = () => dispatch(addItem({ ...product, quantity }));
 
 	return (
 		<div className="product2">

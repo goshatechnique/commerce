@@ -8,7 +8,9 @@ const patterns = {
 
 export function useValidation() {
 	const validate = (value, type, isRequired = true) => {
-		if (!value.trim()) return isRequired ? "* This field is required." : null;
+		if (!value?.trim()) {
+			return isRequired ? "* This field is required." : null;
+		}
 
 		switch (type) {
 			case "email":

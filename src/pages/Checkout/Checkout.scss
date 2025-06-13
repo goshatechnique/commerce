@@ -46,23 +46,15 @@
 	}
 }
 
-.custom-input {
-	box-sizing: border-box;
-	border: 1px solid vars.$grayHeavy;
-	outline: none;
-	color: vars.$grayHeavy;
-	font-size: 1.6rem;
-	font-family: "Poppins";
-	background-color: vars.$white;
-	height: 100%;
-	padding-left: 25px;
-	width: 100%;
-
-	&__error {
-		position: absolute;
-		top: 3px;
-		left: 3px;
-		user-select: none;
-		color: vars.$red;
+@media (max-width: 768px) {
+	.checkout {
+		padding: 00px 10px;
+		.fields-group {
+			max-width: 600px;
+			width: 100%;
+		}
+	}
+	.custom-input {
+		padding-left: 5px;
 	}
 }
