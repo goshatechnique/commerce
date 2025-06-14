@@ -14,13 +14,15 @@ import iconQuestion from "../../assets/images/icon_question.svg";
 import iconDelivery from "../../assets/images/icon_delivery.svg";
 import iconShipping from "../../assets/images/icon_shipping.svg";
 import "./Product.scss";
+import { AppDispatch } from "../../app/store";
+import { Product as ProductType } from "../../types/global";
 
 function Product() {
 	const { id } = useParams();
-	const dispatch = useDispatch();
-	const [product, setProduct] = useState(null);
-	const [galleryIndex, setGalleryIndex] = useState(0);
-	const [quantity, setQuantity] = useState(1);
+	const dispatch = useDispatch<AppDispatch>();
+	const [product, setProduct] = useState<ProductType>();
+	const [galleryIndex, setGalleryIndex] = useState<number>(0);
+	const [quantity, setQuantity] = useState<number>(1);
 
 	useEffect(() => {
 		axios.get(`https://dummyjson.com/products/${id}`).then((res) => {
@@ -28,19 +30,21 @@ function Product() {
 		});
 	}, [id]);
 
-	const addQuantity = () =>
-		setQuantity((prevCount) => {
-			const newCount = prevCount + 1;
-			return newCount <= product.stock ? newCount : prevCount;
-		});
-
-	const subQuantity = () =>
+	const addQuantity = (): void => {
+		if (product) {
+			setQuantity((prevCount) => {
+				const newCount = prevCount + 1;
+				return newCount <= product.stock ? newCount : prevCount;
+			});
+		}
+	};
+	const subQuantity = (): void =>
 		setQuantity((prevCount) => {
 			const newCount = prevCount - 1;
 			return newCount <= 0 ? prevCount : newCount;
 		});
 
-	const onClickImageHandler = (id) => setGalleryIndex(id);
+	const onClickImageHandler = (id: number): void => setGalleryIndex(id);
 
 	const addToBasketHandler = () => dispatch(addItem({ ...product, quantity }));
 

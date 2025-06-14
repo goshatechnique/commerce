@@ -10,10 +10,11 @@ import { AUTH_TYPES } from "../../utils/helpers";
 import { logout } from "../../app/authSlice";
 import { openCart } from "../../app/cartSlice";
 import { resetFilters, setCurrentPage } from "../../app/productSlice";
+import { AppDispatch, RootState } from "../../app/store";
 
 function Header() {
-	const user = useSelector((state) => state.auth.user);
-	const dispatch = useDispatch();
+	const user = useSelector((state: RootState) => state.auth.user);
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
 	const handleLogout = () => {

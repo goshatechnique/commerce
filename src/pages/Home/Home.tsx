@@ -13,7 +13,7 @@ function Home() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	function toProductsWithFilter(tag) {
+	function toProductsWithFilter(tag: string) {
 		dispatch(resetFilters());
 		dispatch(changeFilters({ category: "brand", tag }));
 		navigate("/shop/1");

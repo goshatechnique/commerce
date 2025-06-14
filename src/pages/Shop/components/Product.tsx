@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router";
 import { getUndiscountedPrice, formatPrice } from "../../../utils/helpers";
 import Rating from "../../../components/Rating/Rating";
+import { Product as ProductType } from "../../../types/global";
 
-function Product({ product }) {
+interface Props {
+	product: ProductType;
+}
+
+function Product({ product }: Props) {
 	const navigate = useNavigate();
 
 	const { id, title, brand, price, rating, discountPercentage, image, images } = product;

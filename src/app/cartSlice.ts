@@ -1,7 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { loadCartFromLocalStorage, saveCartToLocalStorage } from "../utils/helpers";
+import { Product } from "../types/global";
 
-const initialState = {
+interface Checkout {
+	email: string;
+	country: string;
+	firstName: string;
+	lastName: string;
+	address: string;
+	city: string;
+	postalCode: string;
+	cardType: string;
+	cardNumber: string;
+	expirationDate: string;
+	cvc: string;
+	cardHolderName: string;
+}
+
+interface CartState {
+	isOpen: boolean;
+	items: Array<Product>;
+	checkout: Checkout;
+}
+
+interface CartItem extends Product {
+	quantity: number;
+}
+
+const initialState: CartState = {
 	isOpen: false,
 	items: [],
 	checkout: {
@@ -24,14 +50,15 @@ const cartSlice = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
-		openCart: (state) => {
+		openCart: (state: CartState) => {
 			state.isOpen = true;
 		},
-		hideCart: (state) => {
+		hideCart: (state: CartState) => {
 			state.isOpen = false;
 		},
-		addItem(state, action) {
+		addItem(state: CartState, action: PayloadAction<any>) {
 			const item = action.payload;
+			if (!item) return;
 			const existingItem = state.items.find((i) => i.id === item.id);
 			if (existingItem) {
 				const newCount = existingItem.quantity + item.quantity;
@@ -46,15 +73,15 @@ const cartSlice = createSlice({
 			}
 			saveCartToLocalStorage(state.items);
 		},
-		getCartFromLocalStorage(state) {
+		getCartFromLocalStorage(state: CartState) {
 			state.items = loadCartFromLocalStorage();
 		},
-		removeItem(state, action) {
+		removeItem(state: CartState, action: PayloadAction<number>) {
 			const id = action.payload;
 			state.items = state.items.filter((i) => i.id !== id);
 			saveCartToLocalStorage(state.items);
 		},
-		updateQuantity(state, action) {
+		updateQuantity(state: CartState, action: PayloadAction<{ id: number; quantity: number }>) {
 			const { id, quantity } = action.payload;
 			const item = state.items.find((i) => i.id === id);
 			if (item) {
@@ -62,11 +89,11 @@ const cartSlice = createSlice({
 			}
 			saveCartToLocalStorage(state.items);
 		},
-		clearCart(state) {
+		clearCart(state: CartState) {
 			state.items = [];
 			saveCartToLocalStorage(state.items);
 		},
-		updateCheckout(state, action) {
+		updateCheckout(state: CartState, action: PayloadAction<{ field: string; data: Checkout }>) {
 			state.checkout = { ...state.checkout, [action.payload.field]: action.payload.data };
 		},
 	},

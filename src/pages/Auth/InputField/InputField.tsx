@@ -1,6 +1,14 @@
 import "./InputField.scss";
 
-function InputField({ type = "text", placeholder = "", specialStyles = "", value = "", onChange = () => {} }) {
+interface Props {
+	type: string;
+	placeholder: string;
+	specialStyles: string | null;
+	value: string;
+	onChange: any;
+}
+
+function InputField({ type = "text", placeholder = "", specialStyles = "", value = "", onChange }: Props) {
 	function validateInput() {
 		//* need to add check is passwords are equal
 		const phoneNumberPattern = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/g;

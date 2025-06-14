@@ -2,25 +2,25 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
-import Home from "./pages/Home/Home.jsx";
-import Shop from "./pages/Shop/Shop.jsx";
-import Auth from "./pages/Auth/Auth.jsx";
-import Basket from "./pages/Basket/Basket.jsx";
-import Checkout from "./pages/Checkout/Checkout.jsx";
-import Product from "./pages/Product/Product.jsx";
-import Footer from "./components/Footer/Footer.jsx";
-import Header from "./components/Header/Header.jsx";
-import Reviews from "./components/Reviews/Reviews.jsx";
-import Features from "./components/Features/Features.jsx";
-import Follow from "./components/Follow/Follow.jsx";
-import Subscribe from "./components/Subscribe/Subsribe.jsx";
-import Loader from "./components/Loader/Loader.jsx";
-import Cart from "./components/Cart/Cart.jsx";
+import Home from "./pages/Home/Home";
+import Shop from "./pages/Shop/Shop";
+import Auth from "./pages/Auth/Auth";
+import Basket from "./pages/Basket/Basket";
+import Checkout from "./pages/Checkout/Checkout";
+import Product from "./pages/Product/Product";
+import NotFound from "./pages/NotFound/NotFound";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import Reviews from "./components/Reviews/Reviews";
+import Features from "./components/Features/Features";
+import Follow from "./components/Follow/Follow";
+import Subscribe from "./components/Subscribe/Subsribe";
+import Loader from "./components/Loader/Loader";
+import Cart from "./components/Cart/Cart";
 
-import { setAuthChecked, subscribeToAuthChanges } from "./app/authSlice.js";
-import { hideCart } from "./app/cartSlice.js";
+import { setAuthChecked, subscribeToAuthChanges } from "./app/authSlice.ts";
+import { hideCart } from "./app/cartSlice.ts";
 import "./assets/styles/App.scss";
-import NotFound from "./pages/NotFound/NotFound.jsx";
 
 function ScrollToTop() {
 	const { pathname } = useLocation();
@@ -60,7 +60,7 @@ function App() {
 			dispatch(setAuthChecked(true));
 		});
 	}, [dispatch]);
-	//* rework 404 page with handle redirect to product with nonexisting id
+
 	return (
 		<BrowserRouter>
 			<div className="App">

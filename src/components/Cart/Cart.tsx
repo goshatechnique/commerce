@@ -8,16 +8,23 @@ import "./Cart.scss";
 import { calculateTotal, formatPrice } from "../../utils/helpers";
 import { removeItem, updateQuantity } from "../../app/cartSlice";
 import { useNavigate } from "react-router";
+import { AppDispatch, RootState } from "../../app/store";
+import { Product } from "../../types/global";
 
-const Cart = ({ isOpen, onClose }) => {
-	const portalElement = document.getElementById("cart-portal");
-	const { items } = useSelector((state) => state.cart);
-	const dispatch = useDispatch();
+interface Props {
+	isOpen: boolean;
+	onClose: () => void;
+}
+
+const Cart = ({ isOpen, onClose }: Props) => {
+	const portalElement = document.getElementById("cart-portal") as HTMLElement;
+	const { items } = useSelector((state: RootState) => state.cart);
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
 	const total = calculateTotal(items);
 
-	function updateQuantityHandler(id, quantity, stock) {
+	function updateQuantityHandler(id: number, quantity: number, stock: number) {
 		if (quantity < 0 || quantity > stock) return;
 		if (quantity === 0) {
 			dispatch(removeItem(id));
@@ -26,17 +33,17 @@ const Cart = ({ isOpen, onClose }) => {
 		dispatch(updateQuantity({ id, quantity }));
 	}
 
-	const toBasketHandler = () => {
+	const toBasketHandler = (): void => {
 		navigate("/basket");
 		onClose();
 	};
 
-	const toCheckoutHandler = () => {
+	const toCheckoutHandler = (): void => {
 		navigate("/checkout");
 		onClose();
 	};
 
-	const toHomeHandler = () => {
+	const toHomeHandler = (): void => {
 		navigate("/");
 		onClose();
 	};
@@ -51,7 +58,11 @@ const Cart = ({ isOpen, onClose }) => {
 		);
 	}
 
-	function CartItem({ item }) {
+	interface CartItemProps {
+		item: Product;
+	}
+
+	function CartItem({ item }: CartItemProps) {
 		return (
 			<div key={item.id} className="cart-section__product">
 				<div className="cart-section__product-image">
@@ -90,7 +101,7 @@ const Cart = ({ isOpen, onClose }) => {
 						<div className="divider" />
 					</div>
 					<div className="cart-section">
-						{items.map((item) => (
+						{items.map((item: Product) => (
 							<CartItem key={item.id} item={item} />
 						))}
 						{!items.length ? (

@@ -11,7 +11,7 @@ function NotFound() {
 		<div className="not-found">
 			<span className="not-found__heading">404</span>
 			<span className="not-found__warn">Ooops!</span>
-			<span className="not-found__message">THAT PAGE DOESN'T EXIST OR UNAVAILABLE.</span>
+			<span className="not-found__message">THAT PAGE DOESN&apos;T EXIST OR UNAVAILABLE.</span>
 			<Button text="Go Back to Home" specialStyles="black" onClick={toHomeHandler} />
 		</div>
 	);

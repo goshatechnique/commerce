@@ -9,19 +9,20 @@ import { changeSorting, getProducts, getProductsByPage, setCurrentPage } from ".
 import { BRANDS, CATEGORIES, PRICES, SORT_OPTIONS, TAGS } from "../../utils/helpers";
 import "./Shop.scss";
 import FiltersSection from "./components/FiltersSection";
+import { AppDispatch, RootState } from "../../app/store";
 
 function Shop() {
-	const [isVisible, setIsVisible] = useState(false);
-	const [sortingType, setSortingType] = useState(null);
+	const [isVisible, setIsVisible] = useState<boolean>(false);
+	const [sortingType, setSortingType] = useState<string | null>(null);
 	const { productsVisible, pagesTotal, currentPage, filters, sorting, loading } = useSelector(
-		(state) => state.products
+		(state: RootState) => state.products
 	);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 	const { id } = useParams();
 
-	let isProductsExist = !!productsVisible?.length;
-	let isProductsLoading = loading;
+	const isProductsExist = !!productsVisible?.length;
+	const isProductsLoading = loading;
 
 	useEffect(() => {
 		dispatch(getProducts());
@@ -32,13 +33,17 @@ function Shop() {
 		if (Number(id) !== currentPage) navigate(`/shop/${currentPage}`);
 	}, [dispatch, navigate, currentPage, id]);
 
-	const changeSortingHandler = ({ type = null, field = null }) => dispatch(changeSorting({ type, field }));
+	const changeSortingHandler = ({ type = null, field = null }: { type: string | null; field: string | null }): void => {
+		dispatch(changeSorting({ type, field }));
+	};
 
-	const setCurrentPageHandler = (i) => dispatch(setCurrentPage(i));
+	const setCurrentPageHandler = (i: number): void => {
+		dispatch(setCurrentPage(i));
+	};
 
 	function createPageSelector() {
 		let startPage, endPage;
-
+		if (!pagesTotal) return;
 		if (pagesTotal <= 3) {
 			startPage = 1;
 			endPage = pagesTotal;
@@ -108,7 +113,7 @@ function Shop() {
 				<div className={`products-section__container ${isProductsLoading || !isProductsExist ? "centered" : ""}`}>
 					{renderProductsList()}
 				</div>
-				<div className="products-section__pages">{pagesTotal >= 0 ? createPageSelector() : null}</div>
+				<div className="products-section__pages">{pagesTotal && pagesTotal >= 0 ? createPageSelector() : null}</div>
 			</div>
 		</div>
 	);

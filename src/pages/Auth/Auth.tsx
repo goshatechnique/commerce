@@ -11,18 +11,19 @@ import "./Auth.scss";
 import authImage from "../../assets/images/signin.png";
 import emailIcon from "../../assets/images/icon_email.svg";
 import googleIcon from "../../assets/images/icon_google.svg";
+import { AppDispatch } from "../../app/store";
 
 function Auth() {
 	const location = useLocation();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const { type } = location.state || {};
 
 	useEffect(() => {
 		setAuthType(type || AUTH_TYPES.SIGN_IN);
 	}, [type]);
 
-	const [authType, setAuthType] = useState(AUTH_TYPES.SIGN_IN);
+	const [authType, setAuthType] = useState<string>(AUTH_TYPES.SIGN_IN);
 	const [userData, setUserData] = useState({
 		[FIELDS_TYPES.firstName]: "",
 		[FIELDS_TYPES.lastName]: "",
@@ -33,36 +34,49 @@ function Auth() {
 	});
 
 	function handleEmailRegistration() {
-		dispatch(registerWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then((res) => {
-			if (res?.error) return;
-			navigate(`/`);
-		});
+		dispatch(registerWithEmailAndPassword({ email: userData.Email, password: userData.Password }))
+			.then((res) => {
+				if (res.meta.requestStatus === "fulfilled") {
+					navigate("/");
+				}
+			})
+			.catch((error) => {
+				console.error("Login error:", error);
+			});
 	}
 
-	function handleEmailLogin() {
-		dispatch(loginWithEmailAndPassword({ email: userData.Email, password: userData.Password })).then((res) => {
-			if (res?.error) return;
-			navigate(`/`);
-		});
+	const handleEmailLogin = (): void => {
+		dispatch(loginWithEmailAndPassword({ email: userData.Email, password: userData.Password }))
+			.then((res) => {
+				if (res.meta.requestStatus === "fulfilled") {
+					navigate("/");
+				}
+			})
+			.catch((error) => {
+				console.error("Login error:", error);
+			});
+	};
+
+	function handleGoogleLogin(): void {
+		dispatch(loginWithGoogle())
+			.then((res) => {
+				if (res.meta.requestStatus === "fulfilled") {
+					navigate("/");
+				}
+			})
+			.catch((error) => {
+				console.error("Login error:", error);
+			});
 	}
 
-	function handleGoogleLogin() {
-		dispatch(loginWithGoogle({ email: userData.Email, password: userData.Password })).then((res) => {
-			if (res?.error) return;
-			navigate(`/`);
-		});
-	}
+	const handleUserData = (event: React.ChangeEvent<HTMLInputElement>, fieldName: string): void => {
+		setUserData((prevState) => ({
+			...prevState,
+			[fieldName]: event.target.value,
+		}));
+	};
 
-	function handleUserData(event, fieldName) {
-		setUserData((prevState) => {
-			return {
-				...prevState,
-				[fieldName]: event.target.value,
-			};
-		});
-	}
-
-	const toggleAuthType = () =>
+	const toggleAuthType = (): void =>
 		setAuthType((prevType) => (prevType === AUTH_TYPES.SIGN_IN ? AUTH_TYPES.SIGN_UP : AUTH_TYPES.SIGN_IN));
 
 	return (

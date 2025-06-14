@@ -5,8 +5,12 @@ import arrow from "../../assets/images/arrow.svg";
 import { REVIEWS } from "../../utils/helpers";
 import "./Reviews.scss";
 
-function Carousel({ items }) {
-	const [activeIndex, setActiveIndex] = useState(0);
+interface Props {
+	items: Array<any>;
+}
+
+function Carousel({ items }: Props) {
+	const [activeIndex, setActiveIndex] = useState<number>(0);
 
 	const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
 

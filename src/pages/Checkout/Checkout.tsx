@@ -2,11 +2,17 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
 import Button from "../../components/Button/Button";
-import Input from "./Input.jsx/Input";
+import Input from "./Input/Input";
 import { clearCart } from "../../app/cartSlice";
 import "./Checkout.scss";
+import { AppDispatch } from "../../app/store";
 
-function FieldGroup({ title, children }) {
+interface Props {
+	title: string;
+	children: any;
+}
+
+function FieldGroup({ title, children }: Props) {
 	return (
 		<div className="fields-group">
 			<span className="fields-group__header">{title}</span>
@@ -17,9 +23,9 @@ function FieldGroup({ title, children }) {
 
 function Checkout() {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
-	const onPaymentHandler = () => {
+	const onPaymentHandler = (): void => {
 		alert("Your order is placed!");
 		dispatch(clearCart());
 		navigate("/");

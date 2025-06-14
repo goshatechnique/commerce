@@ -5,11 +5,12 @@ import ProductCard from "../ProductCard/ProductCard";
 import Button from "../Button/Button";
 import { getNewArrivals } from "../../app/productSlice";
 import "./Arrivals.scss";
+import { AppDispatch, RootState } from "../../app/store";
 
 function Arrivals() {
-	const dispatch = useDispatch();
-	const { newArrivals } = useSelector((state) => state.products);
-	const [arrivalsFilter, setArrivalsFilter] = useState(null);
+	const dispatch = useDispatch<AppDispatch>();
+	const { newArrivals } = useSelector((state: RootState) => state.products);
+	const [arrivalsFilter, setArrivalsFilter] = useState<string | null>(null);
 
 	useEffect(() => {
 		dispatch(getNewArrivals(arrivalsFilter));

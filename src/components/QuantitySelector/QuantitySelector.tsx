@@ -1,6 +1,12 @@
 import "./QuantitySelector.scss";
 
-function QuantitySelector({ quantity, addQuantity, subQuantity }) {
+interface Props {
+	quantity: number;
+	addQuantity: () => void;
+	subQuantity: () => void;
+}
+
+function QuantitySelector({ quantity, addQuantity, subQuantity }: Props) {
 	return (
 		<div className="quantity__content__selector">
 			<div className="quantity__content__selector-btn" onClick={subQuantity}>
