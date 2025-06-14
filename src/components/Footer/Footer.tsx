@@ -11,7 +11,7 @@ function Footer() {
 					<button className="footer-feedback__navigator-link">Contract</button>
 					<button className="footer-feedback__navigator-link">Careers</button>
 					<button className="footer-feedback__navigator-link">Blog</button>
-					<button className="footer-feedback__navigator-link">FAQ's</button>
+					<button className="footer-feedback__navigator-link">FAQ&apos;s</button>
 				</div>
 			</div>
 			<div className="footer-copyrights">Copyright © 2025. Heorhi Yedziyeu.</div>

@@ -8,6 +8,11 @@ import logoCalvinKlein from "../assets/images/logo_CK.png";
 import logoDenim from "../assets/images/logo_Denim.png";
 import logoLouisVuitton from "../assets/images/logo_LV.png";
 
+import iconQuality from "../assets/images/icon_quality.svg";
+import iconWarranty from "../assets/images/icon_warranty.svg";
+import iconShipping from "../assets/images/icon_shipping.svg";
+import iconSupport from "../assets/images/icon_support.svg";
+
 export const AUTH_TYPES = {
 	SIGN_IN: "signin",
 	SIGN_UP: "signup",
@@ -135,6 +140,33 @@ export const SORT_OPTIONS = [
 ];
 
 export const PAGE_LENGTH = 6;
+
+export const FEATURES = [
+	{
+		id: "quality",
+		icon: iconQuality,
+		title: "High Quality",
+		text: "Crafted from top materials",
+	},
+	{
+		id: "warranty",
+		icon: iconWarranty,
+		title: "Warranty Protection",
+		text: "Over 2 years",
+	},
+	{
+		id: "shipping",
+		icon: iconShipping,
+		title: "Free Shipping",
+		text: "Order over 75$",
+	},
+	{
+		id: "support",
+		icon: iconSupport,
+		title: "24/7 Support",
+		text: "Dedicated support",
+	},
+];
 
 export const formatPrice = (number) => Number(number).toFixed(2);
 

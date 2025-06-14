@@ -3,7 +3,13 @@ import { formatPrice, getUndiscountedPrice } from "../../utils/helpers";
 import "./ProductCard.scss";
 import Rating from "../Rating/Rating";
 
-function ProductCard({ product }) {
+import { Product } from "../../types/global";
+
+interface Props {
+	product: Product;
+}
+
+function ProductCard({ product }: Props) {
 	const navigate = useNavigate();
 	const toProduct = () => navigate(`/product/${id}`);
 

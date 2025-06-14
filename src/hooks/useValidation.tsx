@@ -6,8 +6,8 @@ const patterns = {
 	cardHolder: /^[A-Za-z\s\-']+$/,
 };
 
-export function useValidation() {
-	const validate = (value, type, isRequired = true) => {
+export function useValidation(): any {
+	const validate = (value: string, type: string, isRequired = true) => {
 		if (!value?.trim()) {
 			return isRequired ? "* This field is required." : null;
 		}

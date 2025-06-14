@@ -3,16 +3,17 @@ import QuantitySelector from "../../components/QuantitySelector/QuantitySelector
 import Button from "../../components/Button/Button";
 
 import "./Basket.scss";
-import { calculateTotal, formatPrice } from "../../utils/helpers";
+import { calculateTotal, formatPrice } from "../../utils/helpers.js";
 import { removeItem, updateQuantity } from "../../app/cartSlice";
 import { useNavigate } from "react-router";
+import { AppDispatch, RootState } from "../../app/store";
 
 function Basket() {
-	const { items } = useSelector((state) => state.cart);
-	const dispatch = useDispatch();
+	const { items } = useSelector((state: RootState) => state.cart);
+	const dispatch = useDispatch<AppDispatch>();
 	const navigate = useNavigate();
 
-	function updateQuantityHandler(id, quantity, stock) {
+	function updateQuantityHandler(id: number, quantity: number, stock: number): void {
 		if (quantity < 0 || quantity > stock) return;
 		if (quantity === 0) {
 			dispatch(removeItem(id));
@@ -21,8 +22,12 @@ function Basket() {
 		dispatch(updateQuantity({ id, quantity }));
 	}
 
-	const toHomeHandler = () => navigate("/");
-	const toCheckoutHandler = () => navigate("/checkout");
+	const toHomeHandler = (): void => {
+		navigate("/");
+	};
+	const toCheckoutHandler = (): void => {
+		navigate("/checkout");
+	};
 
 	const total = calculateTotal(items);
 

@@ -7,18 +7,26 @@ import blank from "../../assets/images/blank.png";
 import "./Deals.scss";
 
 function Deals() {
+	interface DateDifference {
+		days: number | null;
+		hours: number | null;
+		mins: number | null;
+		secs: number | null;
+	}
 	const navigate = useNavigate();
 
-	const [date, setDate] = useState({
+	const [date, setDate] = useState<DateDifference>({
 		days: null,
 		hours: null,
 		mins: null,
 		secs: null,
 	});
 
-	const toShopHandler = () => navigate("/shop/1");
+	const toShopHandler = (): void => {
+		navigate("/shop/1");
+	};
 
-	function calculateDate() {
+	function calculateDate(): void {
 		const now = moment();
 		const endOfWeek = now.clone().endOf("week");
 		const diff = moment.duration(endOfWeek.diff(now));
@@ -31,7 +39,7 @@ function Deals() {
 	}
 
 	useEffect(() => {
-		let timeCalculator = setInterval(calculateDate, 1000);
+		const timeCalculator = setInterval(calculateDate, 1000);
 		return () => {
 			clearInterval(timeCalculator);
 		};
@@ -46,7 +54,7 @@ function Deals() {
 					Scelerisque duis ultrices sollicitudin.
 				</div>
 				<Button text="Buy Now" specialStyles="black tight" onClick={toShopHandler}></Button>
-				<div className="deals-section__notice">Hurry, Before It's To Late!</div>
+				<div className="deals-section__notice">Hurry, Before It&apos;s To Late!</div>
 				<div className="deals-section__timer">
 					<div className="wrapper">
 						<div className="block">{date.days}</div>

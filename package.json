@@ -44,6 +44,11 @@
     ]
   },
   "devDependencies": {
+    "@types/moment": "^2.11.29",
+    "@types/node": "^24.0.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/react-router-dom": "^5.3.3",
     "sass": "^1.89.1",
     "sass-loader": "^16.0.5"
   },
