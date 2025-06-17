@@ -3,7 +3,7 @@ import QuantitySelector from "../../components/QuantitySelector/QuantitySelector
 import Button from "../../components/Button/Button";
 
 import "./Basket.scss";
-import { calculateTotal, formatPrice } from "../../utils/helpers.js";
+import { calculateTotal, formatPrice, getDiscountedPrice } from "../../utils/helpers.js";
 import { removeItem, updateQuantity } from "../../app/cartSlice";
 import { useNavigate } from "react-router";
 import { AppDispatch, RootState } from "../../app/store";
@@ -47,31 +47,34 @@ function Basket() {
 						<div className="table-cell centered">Total</div>
 					</div>
 
-					{items.map((item) => (
-						<div className="table-product" key={item.id}>
-							<div className="table-product-info">
-								<div className="table-product-image">
-									<img src={item.images[0]} alt={item.title} />
+					{items.map((item) => {
+						const discountedPrice = getDiscountedPrice(item.price, item.discountPercentage);
+						return (
+							<div className="table-product" key={item.id}>
+								<div className="table-product-info">
+									<div className="table-product-image">
+										<img src={item.images[0]} alt={item.title} />
+									</div>
+									<div className="table-product-title">{item.title}</div>
+									<div className="table-product-btn">
+										<span onClick={() => updateQuantityHandler(item.id, 0, item.stock)}>Remove</span>
+									</div>
 								</div>
-								<div className="table-product-title">{item.title}</div>
-								<div className="table-product-btn">
-									<span onClick={() => updateQuantityHandler(item.id, 0, item.stock)}>Remove</span>
+
+								<div className="table-price">${formatPrice(discountedPrice)}</div>
+
+								<div className="table-quantity">
+									<QuantitySelector
+										quantity={item.quantity}
+										addQuantity={() => updateQuantityHandler(item.id, item.quantity + 1, item.stock)}
+										subQuantity={() => updateQuantityHandler(item.id, item.quantity - 1, item.stock)}
+									/>
 								</div>
+
+								<div className="table-total">${formatPrice(total.totalPrice)}</div>
 							</div>
-
-							<div className="table-price">${item.price}</div>
-
-							<div className="table-quantity">
-								<QuantitySelector
-									quantity={item.quantity}
-									addQuantity={() => updateQuantityHandler(item.id, item.quantity + 1, item.stock)}
-									subQuantity={() => updateQuantityHandler(item.id, item.quantity - 1, item.stock)}
-								/>
-							</div>
-
-							<div className="table-total">${formatPrice(item.price * item.quantity)}</div>
-						</div>
-					))}
+						);
+					})}
 
 					<div className="table-footer">
 						<div className="table-footer__checkout">

@@ -3,7 +3,7 @@ import "./Button.scss";
 interface Props {
 	text: string;
 	disabled?: boolean;
-	icon?: any;
+	icon?: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	specialStyles?: string;
 }

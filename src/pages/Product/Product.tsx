@@ -44,28 +44,36 @@ function Product() {
 			return newCount <= 0 ? prevCount : newCount;
 		});
 
-	const onClickImageHandler = (id: number): void => setGalleryIndex(id);
+	const onClickImageHandler = (id: number) => setGalleryIndex(id);
 
-	const addToBasketHandler = () => dispatch(addItem({ ...product, quantity }));
+	const addToBasketHandler = () => dispatch(addItem({ ...product, quantity } as ProductType));
 
 	return (
-		<div className="product2">
+		<div className="product-page">
 			{!product ? (
 				<Loader />
 			) : (
 				<>
-					<div className="product2-gallery">
-						<div className="product2-gallery__thumbnails">
+					<div className="product-page-gallery">
+						<div className="product-page-gallery__thumbnails">
 							{product.images.map((item, idx) => (
-								<div key={idx} className="product2-gallery__thumbnails-item" onClick={() => onClickImageHandler(idx)}>
-									<img src={item} alt="#" className="product2-gallery__thumbnails-item-img" />
+								<div
+									key={idx}
+									className="product-page-gallery__thumbnails-item"
+									onClick={() => onClickImageHandler(idx)}
+								>
+									<img src={item} alt="#" className="product-page-gallery__thumbnails-item-img" />
 								</div>
 							))}
 						</div>
-						<img className="product2-gallery__preview" src={product?.image ?? product?.images[galleryIndex]} alt="#" />
+						<img
+							className="product-page-gallery__preview"
+							src={product?.image ?? product?.images[galleryIndex]}
+							alt="#"
+						/>
 					</div>
 
-					<div className="product2-details">
+					<div className="product-page-details">
 						<div className="logo">FASCO</div>
 						<div className="title">{product?.title}</div>
 						<div className="price">${formatPrice(product?.price)}</div>

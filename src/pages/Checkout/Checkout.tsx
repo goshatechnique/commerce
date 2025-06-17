@@ -9,7 +9,7 @@ import { AppDispatch } from "../../app/store";
 
 interface Props {
 	title: string;
-	children: any;
+	children: React.ReactNode | React.ReactNode[];
 }
 
 function FieldGroup({ title, children }: Props) {
@@ -26,8 +26,8 @@ function Checkout() {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const onPaymentHandler = (): void => {
-		alert("Your order is placed!");
 		dispatch(clearCart());
+		alert("Your order is placed!");
 		navigate("/");
 	};
 

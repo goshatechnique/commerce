@@ -6,23 +6,29 @@ const patterns = {
 	cardHolder: /^[A-Za-z\s\-']+$/,
 };
 
-export function useValidation(): any {
-	const validate = (value: string, type: string, isRequired = true) => {
-		if (!value?.trim()) {
+interface ValidationResult {
+	validate: (value: string | undefined, type: string, isRequired?: boolean) => string | null;
+}
+
+export function useValidation(): ValidationResult {
+	const validate = (value: string | undefined, type: string, isRequired = true): string | null => {
+		const trimmedValue = value?.trim() ?? "";
+
+		if (!trimmedValue) {
 			return isRequired ? "* This field is required." : null;
 		}
 
 		switch (type) {
 			case "email":
-				return patterns.email.test(value) ? null : "* Invalid email.";
+				return patterns.email.test(trimmedValue) ? null : "* Invalid email.";
 			case "postalCode":
-				return patterns.postalCode.test(value) ? null : "* Invalid postal code.";
+				return patterns.postalCode.test(trimmedValue) ? null : "* Invalid postal code.";
 			case "cardNumber":
-				return patterns.cardNumber.test(value) ? null : "* Invalid card number.";
+				return patterns.cardNumber.test(trimmedValue) ? null : "* Invalid card number.";
 			case "cvc":
-				return patterns.cvc.test(value) ? null : "* Invalid CVC.";
+				return patterns.cvc.test(trimmedValue) ? null : "* Invalid CVC.";
 			case "cardHolder":
-				return patterns.cardHolder.test(value) ? null : "* Invalid name.";
+				return patterns.cardHolder.test(trimmedValue) ? null : "* Invalid name.";
 			default:
 				return null;
 		}

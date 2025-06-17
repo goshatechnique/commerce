@@ -3,7 +3,7 @@
 .reviews {
 	background-color: vars.$whiteHard;
 	width: 100%;
-	padding: 50px 0;
+	padding-top: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -71,7 +71,7 @@
 			width: 150px;
 			justify-content: space-around;
 			align-items: center;
-			padding: 15px 0px;
+			padding: 25px 0px;
 			&__btn {
 				width: 48px;
 				height: 48px;

@@ -23,10 +23,6 @@ interface CartState {
 	checkout: Checkout;
 }
 
-interface CartItem extends Product {
-	quantity: number;
-}
-
 const initialState: CartState = {
 	isOpen: false,
 	items: [],
@@ -56,20 +52,20 @@ const cartSlice = createSlice({
 		hideCart: (state: CartState) => {
 			state.isOpen = false;
 		},
-		addItem(state: CartState, action: PayloadAction<any>) {
-			const item = action.payload;
-			if (!item) return;
-			const existingItem = state.items.find((i) => i.id === item.id);
-			if (existingItem) {
-				const newCount = existingItem.quantity + item.quantity;
-				if (newCount <= existingItem.stock) {
-					existingItem.quantity = newCount;
+		addItem(state: CartState, action: PayloadAction<Product>) {
+			const product = action.payload;
+			if (!product) return;
+			const existingProduct = state.items.find((i) => i.id === product.id);
+			if (existingProduct) {
+				const newCount = existingProduct.quantity + product.quantity;
+				if (newCount <= existingProduct.stock) {
+					existingProduct.quantity = newCount;
 				} else {
 					//* rework with popup in future
 					alert("Sorry, not enough goods in stock");
 				}
 			} else {
-				state.items.push(item);
+				state.items.push(product);
 			}
 			saveCartToLocalStorage(state.items);
 		},
@@ -93,7 +89,7 @@ const cartSlice = createSlice({
 			state.items = [];
 			saveCartToLocalStorage(state.items);
 		},
-		updateCheckout(state: CartState, action: PayloadAction<{ field: string; data: Checkout }>) {
+		updateCheckout(state: CartState, action: PayloadAction<{ field: string; data: string }>) {
 			state.checkout = { ...state.checkout, [action.payload.field]: action.payload.data };
 		},
 	},

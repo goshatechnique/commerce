@@ -186,7 +186,7 @@
 		grid-template-areas:
 			"brand rating"
 			"title title"
-			"price discounted";
+			"discounted price";
 
 		&-title {
 			grid-area: title;
@@ -211,9 +211,7 @@
 			display: flex;
 			align-items: center;
 			font-family: "Jost";
-			font-weight: normal;
-			text-decoration: line-through;
-			color: vars.$grayMedium;
+			font-weight: bold;
 		}
 
 		&-price {
@@ -221,7 +219,9 @@
 			display: flex;
 			align-items: center;
 			font-family: "Jost";
-			font-weight: bold;
+			font-weight: normal;
+			text-decoration: line-through;
+			color: vars.$grayMedium;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { getUndiscountedPrice, formatPrice } from "../../../utils/helpers";
+import { getDiscountedPrice, formatPrice } from "../../../utils/helpers";
 import Rating from "../../../components/Rating/Rating";
 import { Product as ProductType } from "../../../types/global";
 
@@ -14,7 +14,7 @@ function Product({ product }: Props) {
 
 	const toProduct = () => navigate(`/product/${id}`);
 	const originalPrice = formatPrice(price);
-	const discountedPrice = formatPrice(getUndiscountedPrice(price, discountPercentage));
+	const discountedPrice = formatPrice(getDiscountedPrice(price, discountPercentage));
 	const hasDiscount = discountPercentage > 0;
 
 	return (

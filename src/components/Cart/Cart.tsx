@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import "./Cart.scss";
 
-import { calculateTotal, formatPrice } from "../../utils/helpers";
+import { calculateTotal, formatPrice, getDiscountedPrice } from "../../utils/helpers";
 import { removeItem, updateQuantity } from "../../app/cartSlice";
 import { useNavigate } from "react-router";
 import { AppDispatch, RootState } from "../../app/store";
@@ -63,6 +63,7 @@ const Cart = ({ isOpen, onClose }: Props) => {
 	}
 
 	function CartItem({ item }: CartItemProps) {
+		const discountedPrice = getDiscountedPrice(item.price, item.discountPercentage);
 		return (
 			<div key={item.id} className="cart-section__product">
 				<div className="cart-section__product-image">
@@ -72,7 +73,7 @@ const Cart = ({ isOpen, onClose }: Props) => {
 					<div className="cart-section__product-content__title">
 						{item.brand} - {item.title}
 					</div>
-					<div className="cart-section__product-content__price">${formatPrice(item.price)}</div>
+					<div className="cart-section__product-content__price">${formatPrice(discountedPrice)}</div>
 					<div className="quantity__content">
 						<QuantitySelector
 							quantity={item.quantity}
