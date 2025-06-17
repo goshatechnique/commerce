@@ -1,17 +1,12 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { filterProducts, PAGE_LENGTH, sortProducts } from "../utils/helpers";
-import { Product } from "../types/global";
-
-interface PriceRange {
-	min: number;
-	max: number;
-}
+import { PriceTag, Product } from "../types/global";
 
 interface Filters {
 	brand: string[];
 	category: string[];
-	price: PriceRange;
+	price: PriceTag;
 }
 
 interface Sorting {
@@ -112,7 +107,7 @@ const productSlice = createSlice({
 			};
 			state.currentPage = 1;
 		},
-		changeFilterPrice: (state: ProductsState, action: PayloadAction<PriceRange>) => {
+		changeFilterPrice: (state: ProductsState, action: PayloadAction<PriceTag>) => {
 			if (state.filters.price.min === action.payload.min && state.filters.price.max === action.payload.max) {
 				state.filters.price = {
 					min: 0,

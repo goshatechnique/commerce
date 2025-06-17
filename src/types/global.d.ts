@@ -15,4 +15,9 @@ interface Product {
 	shippingInformation: string;
 }
 
-export { Product };
+export interface PriceTag {
+	min: number;
+	max: number;
+}
+
+export { Product, PriceTag };

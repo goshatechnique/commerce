@@ -33,7 +33,7 @@
 		grid-template-areas:
 			"brand rating"
 			"title title"
-			"price discounted";
+			"discounted price";
 
 		.brand {
 			grid-area: brand;
@@ -54,19 +54,21 @@
 		}
 		.price {
 			grid-area: price;
-			display: flex;
-			align-items: center;
-			font-family: "Jost";
-			font-weight: bold;
-		}
-		.discounted {
-			grid-area: discounted;
+
 			display: flex;
 			align-items: center;
 			font-family: "Jost";
 			font-weight: normal;
 			text-decoration: line-through;
 			color: vars.$grayMedium;
+		}
+
+		.discounted {
+			grid-area: discounted;
+			display: flex;
+			align-items: center;
+			font-family: "Jost";
+			font-weight: bold;
 		}
 	}
 }

@@ -170,10 +170,15 @@ export const FEATURES = [
 
 export const formatPrice = (number) => Number(number).toFixed(2);
 
-export const getUndiscountedPrice = (price, discountPercentage) => price - (price / 100) * discountPercentage;
+export const getDiscountedPrice = (price, discountPercentage) => price - (price / 100) * discountPercentage;
 
 export const calculateTotal = (items = []) => {
-	const totalPrice = items.reduce((accumulator, item) => accumulator + item.quantity * item.price, 0);
+	const totalPrice = items.reduce((sum, item) => {
+		const itemPrice = item.price * item.quantity;
+		const discountAmount = itemPrice * (item.discountPercentage / 100);
+		return sum + (itemPrice - discountAmount);
+	}, 0);
+
 	const shipping = items?.length > 0 ? (totalPrice > 75 ? 0 : 10) : 0;
 	return {
 		totalPrice,

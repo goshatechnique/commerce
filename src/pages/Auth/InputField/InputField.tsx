@@ -5,7 +5,7 @@ interface Props {
 	placeholder: string;
 	specialStyles: string | null;
 	value: string;
-	onChange: any;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>, placeholder: string) => void;
 }
 
 function InputField({ type = "text", placeholder = "", specialStyles = "", value = "", onChange }: Props) {

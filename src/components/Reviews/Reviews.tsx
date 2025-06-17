@@ -5,24 +5,32 @@ import arrow from "../../assets/images/arrow.svg";
 import { REVIEWS } from "../../utils/helpers";
 import "./Reviews.scss";
 
-interface Props {
-	items: Array<any>;
+interface Review {
+	photo: string;
+	fullname: string;
+	proffesion: string;
+	rating: number;
+	review: string;
 }
 
-function Carousel({ items }: Props) {
+interface Props {
+	reviews: Array<Review>;
+}
+
+function Carousel({ reviews }: Props) {
 	const [activeIndex, setActiveIndex] = useState<number>(0);
 
-	const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+	const handlePrev = () => setActiveIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
 
-	const handleNext = () => setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+	const handleNext = () => setActiveIndex((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
 
 	return (
 		<div className="carousel-container">
 			<div className="carousel">
-				{items.map((item, index) => {
+				{reviews.map((item, index) => {
 					let position = "right";
 					if (index === activeIndex) position = "center";
-					else if (index === activeIndex - 1 || (activeIndex === 0 && index === items.length - 1)) {
+					else if (index === activeIndex - 1 || (activeIndex === 0 && index === reviews.length - 1)) {
 						position = "left";
 					}
 
@@ -66,7 +74,7 @@ function Reviews() {
 			<span className="reviews-header">This Is What Our Customers Say</span>
 			<span className="reviews-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis</span>
 
-			<Carousel items={REVIEWS} />
+			<Carousel reviews={REVIEWS} />
 		</div>
 	);
 }

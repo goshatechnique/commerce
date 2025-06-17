@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { formatPrice, getUndiscountedPrice } from "../../utils/helpers";
+import { formatPrice, getDiscountedPrice } from "../../utils/helpers";
 import "./ProductCard.scss";
 import Rating from "../Rating/Rating";
 
@@ -15,7 +15,7 @@ function ProductCard({ product }: Props) {
 
 	const { id, title, brand, price, rating, discountPercentage, image, images } = product;
 	const originalPrice = formatPrice(price);
-	const discountedPrice = formatPrice(getUndiscountedPrice(price, discountPercentage));
+	const discountedPrice = formatPrice(getDiscountedPrice(price, discountPercentage));
 	const hasDiscount = discountPercentage > 0;
 
 	return (

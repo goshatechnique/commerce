@@ -3,17 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeFilters, changeFilterPrice } from "../../../app/productSlice";
 import { formatTag } from "../../../utils/helpers";
 import arrowDown from "../../../assets/images/arrow-down.svg";
+import { RootState } from "../../../app/store";
+import { PriceTag } from "../../../types/global";
 
-function FiltersSection({ name, tags, category, specialStyles = "" }) {
+type FilterCategory = "brand" | "category" | "price";
+
+interface Props {
+	name: string;
+	tags: string[] | PriceTag[];
+	category: FilterCategory;
+	specialStyles?: string;
+}
+
+function FiltersSection({ name, tags, category, specialStyles = "" }: Props) {
 	const [isVisible, setIsVisible] = useState(true);
-	const { filters } = useSelector((state) => state.products);
+	const { filters } = useSelector((state: RootState) => state.products);
 	const dispatch = useDispatch();
 
 	const toggleVisibility = useCallback(() => setIsVisible((prev) => !prev), []);
 
-	const handleFilter = (tag) => dispatch(changeFilters(tag));
+	const handleFilter = (filterInstance: { category: "brand" | "category"; tag: string }) =>
+		dispatch(changeFilters(filterInstance));
 
-	const handlePriceFilter = ({ min, max }) => dispatch(changeFilterPrice({ min, max }));
+	const handlePriceFilter = ({ min, max }: PriceTag) => dispatch(changeFilterPrice({ min, max }));
 
 	function renderFilterOptions() {
 		if (!tags || tags.length === 0) return null;
@@ -26,7 +38,7 @@ function FiltersSection({ name, tags, category, specialStyles = "" }) {
 	}
 
 	function renderPriceTags() {
-		return tags.map((tag, id) => {
+		return (tags as PriceTag[]).map((tag, id) => {
 			const isActive = tag.min === filters.price.min && tag.max === filters.price.max;
 
 			return (
@@ -42,7 +54,8 @@ function FiltersSection({ name, tags, category, specialStyles = "" }) {
 	}
 
 	function renderRegularTags() {
-		return tags.map((tag, id) => {
+		return (tags as string[]).map((tag, id) => {
+			if (category === "price") return null;
 			const isActive = filters[category]?.includes(tag);
 
 			return (
