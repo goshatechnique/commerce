@@ -50,8 +50,8 @@ function Deals() {
 			<div className="deals-section columned">
 				<div className="deals-section__header">Deals Of The Month</div>
 				<div className="deals-section__info">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem.
-					Scelerisque duis ultrices sollicitudin.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin
+					aliquam sem. Scelerisque duis ultrices sollicitudin.
 				</div>
 				<Button text="Buy Now" specialStyles="black tight" onClick={toShopHandler}></Button>
 				<div className="deals-section__notice">Hurry, Before It&apos;s To Late!</div>
