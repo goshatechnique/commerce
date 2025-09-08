@@ -21,8 +21,8 @@ function Arrivals() {
 			<div className="arrivals__header">
 				<span className="arrivals__header-title">New Arrivals</span>
 				<span className="arrivals__header-text">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem.
-					Scelerisque duis ultrices sollicitudin
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin
+					aliquam sem. Scelerisque duis ultrices sollicitudin
 				</span>
 			</div>
 			<div className="arrivals__navigator">

@@ -2,7 +2,8 @@
 
 .arrivals {
 	width: 1200px;
-	margin: 50px 0;
+	padding: 50px 0px;
+
 	&__header {
 		display: flex;
 		flex-direction: column;
@@ -30,6 +31,7 @@
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 30px;
+		min-height: 910px;
 	}
 }
 

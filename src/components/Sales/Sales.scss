@@ -7,10 +7,16 @@
 	overflow: hidden;
 	grid-gap: 1rem;
 	gap: 1rem;
+	min-height: 762px;
+	user-select: none;
 
 	&-image {
 		border-radius: 10px;
-		max-width: 100%;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		background-color: vars.$whiteHard;
 	}
 
 	&-content {
@@ -55,7 +61,11 @@
 			height: 150px;
 			&-img {
 				border-radius: 10px;
-				min-width: 100%;
+				background-color: vars.$whiteHard;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
 			}
 		}
 	}
@@ -64,6 +74,7 @@
 @media (max-width: 1280px) {
 	.sales {
 		width: 100%;
+		min-height: 594px;
 		&-content {
 			display: grid;
 			grid-template-rows: 150px 1fr 150px;
