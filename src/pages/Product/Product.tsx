@@ -77,7 +77,7 @@ function Product() {
 						<div className="logo">FASCO</div>
 						<div className="title">{product?.title}</div>
 						<div className="price">${formatPrice(product?.price)}</div>
-						<div className="sales">4 people are viewing this right now</div>
+						<div className="saling">4 people are viewing this right now</div>
 						<div className="description">{product?.description}</div>
 						<div className="left">
 							Only <b>{product?.stock}</b> item(s) left in stock!
@@ -100,7 +100,11 @@ function Product() {
 						<div className="quantity">
 							<span className="quantity-title">Quantity</span>
 							<div className="quantity__content">
-								<QuantitySelector quantity={quantity} addQuantity={addQuantity} subQuantity={subQuantity} />
+								<QuantitySelector
+									quantity={quantity}
+									addQuantity={addQuantity}
+									subQuantity={subQuantity}
+								/>
 								<Button text="Add to cart" specialStyles="black" onClick={addToBasketHandler} />
 							</div>
 						</div>
