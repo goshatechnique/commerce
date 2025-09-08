@@ -17,6 +17,8 @@
 
 	.products-section {
 		grid-area: products;
+		display: grid;
+		grid-template-rows: 39px 1fr 59px;
 		&__title {
 			align-self: start;
 			color: vars.$black;
@@ -62,7 +64,6 @@
 			justify-content: flex-start;
 			align-items: flex-start;
 			gap: 3rem;
-			// height: 100%;
 
 			&.centered {
 				display: flex;
@@ -80,18 +81,18 @@
 			cursor: pointer;
 			font-family: "Jost";
 			font-weight: bold;
-			margin: 50px 0;
-			height: 44px;
+			height: 39px;
+			padding: 10px 0px;
 			&-page {
 				margin: 0px 10px;
 				font-size: 1.6rem;
-				width: 44px;
-				height: 44px;
+				width: 39px;
+				height: 39px;
 				border-radius: 50%;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				line-height: 44px;
+				line-height: 39px;
 			}
 			.active {
 				background-color: vars.$grayLight;

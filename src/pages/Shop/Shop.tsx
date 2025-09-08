@@ -33,7 +33,13 @@ function Shop() {
 		if (Number(id) !== currentPage) navigate(`/shop/${currentPage}`);
 	}, [dispatch, navigate, currentPage, id]);
 
-	const changeSortingHandler = ({ type = null, field = null }: { type: string | null; field: string | null }): void => {
+	const changeSortingHandler = ({
+		type = null,
+		field = null,
+	}: {
+		type: string | null;
+		field: string | null;
+	}): void => {
 		dispatch(changeSorting({ type, field }));
 	};
 
@@ -110,10 +116,14 @@ function Shop() {
 						</div>
 					) : null}
 				</div>
-				<div className={`products-section__container ${isProductsLoading || !isProductsExist ? "centered" : ""}`}>
+				<div
+					className={`products-section__container ${isProductsLoading || !isProductsExist ? "centered" : ""}`}
+				>
 					{renderProductsList()}
 				</div>
-				<div className="products-section__pages">{pagesTotal && pagesTotal >= 0 ? createPageSelector() : null}</div>
+				<div className="products-section__pages">
+					{pagesTotal && pagesTotal >= 0 ? createPageSelector() : null}
+				</div>
 			</div>
 		</div>
 	);
